@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HQ — The Threshold Program</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            charcoal: '#0a0a0a',
+            surface: '#111111',
+            bone: '#e8e4de',
+            silver: '#a8a8a8',
+            accent: '#8b2c2c',
+          },
+          fontFamily: {
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    ::selection { background: rgba(139,44,44,0.4); color: #e8e4de; }
+    body { background: #0a0a0a; color: #e8e4de; font-family: 'Inter', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    
+    .glass-nav {
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .loading-spinner {
+      border: 2px solid rgba(139, 44, 44, 0.2);
+      border-top-color: #8b2c2c;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Navigation -->
+  <nav class="glass-nav sticky top-0 z-50 w-full px-6 py-4 flex items-center justify-between shadow-2xl">
+    <div class="flex items-center gap-3">
+      <svg width="24" height="28" viewBox="0 0 72 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M36 8 C34 28, 38 44, 36 80" stroke="#8b2c2c" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <path d="M12 32 C20 28, 52 28, 60 32" stroke="#8b2c2c" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <path d="M28 80 C32 78, 40 78, 44 80" stroke="#8b2c2c" stroke-width="3" stroke-linecap="round" fill="none"/>
+      </svg>
+      <span class="font-mono tracking-widest text-sm uppercase text-accent">Headquarters</span>
+    </div>
+    
+    <div class="flex items-center gap-6">
+      <span id="admin-greeting" class="text-silver text-sm hidden sm:block"></span>
+      <a href="/dashboard.html" class="text-xs font-mono tracking-widest uppercase text-silver/60 hover:text-white transition-colors">Portal</a>
+      <button onclick="logout()" class="text-xs font-mono tracking-widest uppercase text-silver/60 hover:text-white transition-colors">Logout</button>
+    </div>
+  </nav>
+
+  <!-- Main Content Area -->
+  <main class="flex-grow w-full max-w-7xl mx-auto px-6 py-12 sm:py-16">
+    
+    <!-- State: Loading -->
+    <div id="state-loading" class="flex flex-col items-center justify-center py-32 space-y-4">
+      <div class="loading-spinner"></div>
+      <p class="font-mono text-xs tracking-widest text-silver/40 uppercase">Verifying Admin Privileges...</p>
+    </div>
+
+    <!-- State: Error / Unauthorized -->
+    <div id="state-error" class="hidden flex-col items-center justify-center py-32 text-center">
+      <div class="w-16 h-16 rounded-full border border-accent/30 flex items-center justify-center mb-6">
+        <span class="text-accent text-2xl">!</span>
+      </div>
+      <h2 class="font-display text-3xl sm:text-4xl mb-4">Classified Segment</h2>
+      <p id="error-message" class="text-silver mb-8 max-w-md mx-auto leading-relaxed">You do not have the required clearance to view this sector.</p>
+      <a href="/" class="px-8 py-3 bg-white/5 hover:bg-white/10 border border-white/10 text-sm font-mono tracking-wider transition-colors rounded-sm">Return</a>
+    </div>
+
+    <!-- State: Dashboard Content -->
+    <div id="state-dashboard" class="hidden opacity-0 transition-opacity duration-1000 ease-out">
+      
+      <header class="mb-12">
+        <h1 class="font-display text-4xl sm:text-5xl leading-[1.1] mb-2 text-bone">Terminal</h1>
+        <p class="font-mono text-sm tracking-[0.1em] text-silver/60 uppercase">System Overview & Analytics</p>
+      </header>
+
+      <!-- Stats Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <!-- Stat: Total Users -->
+        <div class="bg-surface border border-white/[0.04] p-6 rounded-sm">
+          <p class="text-xs font-mono text-silver tracking-widest uppercase mb-2">Total Users</p>
+          <p id="stat-total-users" class="text-3xl font-display text-bone">...</p>
+        </div>
+        
+        <!-- Stat: Customers -->
+        <div class="bg-surface border border-white/[0.04] p-6 rounded-sm">
+          <p class="text-xs font-mono text-silver tracking-widest uppercase mb-2">Active Customers</p>
+          <p id="stat-purchased-users" class="text-3xl font-display text-bone">...</p>
+        </div>
+        
+        <!-- Stat: Conversion Rate -->
+        <div class="bg-surface border border-white/[0.04] p-6 rounded-sm">
+          <p class="text-xs font-mono text-silver tracking-widest uppercase mb-2">Conversion Rate</p>
+          <p id="stat-conversion" class="text-3xl font-display text-accent">...</p>
+        </div>
+
+        <!-- Stat: Revenue Total -->
+        <div class="bg-surface border border-white/[0.04] p-6 rounded-sm">
+          <p class="text-xs font-mono text-silver tracking-widest uppercase mb-2">Gross Revenue (USD)</p>
+          <p id="stat-revenue" class="text-3xl font-display text-bone">...</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Users List Section -->
+        <div class="lg:col-span-2">
+          <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl font-display text-bone">User Directory</h2>
+            <div class="flex gap-4">
+              <input type="text" id="user-search" placeholder="Search email..." class="bg-surface border border-white/10 rounded-sm px-4 py-1.5 text-sm focus:border-accent focus:outline-none text-bone placeholder:text-silver/40 font-mono" />
+              <button onclick="fetchUsers()" class="px-4 py-1.5 bg-white/5 hover:bg-white/10 text-xs font-mono uppercase tracking-widest border border-white/10 transition-colors">Search</button>
+            </div>
+          </div>
+          
+          <div class="bg-surface border border-white/[0.04] rounded-sm overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="border-b border-white/[0.05] bg-white/[0.02]">
+                    <th class="px-6 py-4 text-xs font-mono text-silver tracking-widest uppercase font-normal">User</th>
+                    <th class="px-6 py-4 text-xs font-mono text-silver tracking-widest uppercase font-normal">Access</th>
+                    <th class="px-6 py-4 text-xs font-mono text-silver tracking-widest uppercase font-normal">Joined</th>
+                    <th class="px-6 py-4 text-xs font-mono text-silver tracking-widest uppercase font-normal text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="users-table-body" class="divide-y divide-white/[0.02]">
+                  <!-- JS Injection -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Pagination -->
+          <div class="mt-4 flex items-center justify-between text-xs font-mono text-silver">
+            <span id="user-pagination-info">Showing 1-20 of ?</span>
+            <div class="flex gap-2">
+              <button id="btn-prev-users" class="px-3 py-1 bg-surface border border-white/10 hover:border-accent disabled:opacity-30 disabled:hover:border-white/10">Prev</button>
+              <button id="btn-next-users" class="px-3 py-1 bg-surface border border-white/10 hover:border-accent disabled:opacity-30 disabled:hover:border-white/10">Next</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Orders Sidebar -->
+        <div class="lg:col-span-1">
+          <h2 class="text-xl font-display text-bone mb-6">Recent Transmissions</h2>
+          
+          <div class="bg-surface border border-white/[0.04] rounded-sm p-4">
+            <div id="recent-orders-list" class="space-y-4">
+              <!-- JS Injection -->
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </main>
+  
+  <!-- Access Modal -->
+  <div id="access-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+    <div class="bg-surface border border-white/10 rounded-sm w-full max-w-md p-6 relative transform scale-95 transition-transform duration-300" id="access-modal-content">
+      <button onclick="closeAccessModal()" class="absolute top-4 right-4 text-silver hover:text-white pb-1">✕</button>
+      <h3 class="font-display text-2xl text-bone mb-1">Modify Clearance</h3>
+      <p id="modal-user-email" class="text-sm font-mono text-accent mb-6"></p>
+      
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-mono text-silver mb-2 uppercase tracking-widest">Access Level</label>
+          <select id="modal-access-level" class="w-full bg-charcoal border border-white/10 rounded-sm px-3 py-2 text-bone focus:border-accent focus:outline-none">
+            <option value="FREE">FREE</option>
+            <option value="FULL_PROGRAM">FULL_PROGRAM</option>
+            <option value="SESSION_ONLY">SESSION_ONLY</option>
+          </select>
+        </div>
+        <div>
+          <label class="flex items-center gap-3 cursor-pointer mt-4">
+            <input type="checkbox" id="modal-has-purchased" class="w-4 h-4 bg-charcoal border border-white/10 rounded-sm accent-accent" />
+            <span class="text-xs font-mono text-silver uppercase tracking-widest">Customer Status (Has Purchased)</span>
+          </label>
+        </div>
+        
+        <button onclick="saveAccessOverride()" class="w-full bg-accent hover:bg-[#a33a3a] text-bone font-mono font-semibold text-xs uppercase tracking-widest py-3 rounded-sm transition-colors mt-6">
+          Execute Update
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

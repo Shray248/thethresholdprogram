@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Threshold Program — Cross Into Your Next Level</title>
+  <meta name="description" content="The Threshold Program is an elite self-improvement course designed for high-performers ready to break through stagnation and operate at peak capacity. Limited cohorts. Apply now." />
+  <meta name="keywords" content="self improvement, peak performance, transformation, coaching, mentorship, threshold program" />
+  <meta property="og:title" content="The Threshold Program — Cross Into Your Next Level" />
+  <meta property="og:description" content="Stop circling. Start crossing. An elite transformation program for those ready to leave who they were behind." />
+  <meta property="og:type" content="website" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            charcoal: '#0a0a0a',
+            surface: '#111111',
+            surfaceLight: '#1a1a1a',
+            bone: '#e8e4de',
+            silver: '#a8a8a8',
+            accent: '#8b2c2c',
+            accentHover: '#a33a3a',
+            accentGlow: 'rgba(139, 44, 44, 0.25)',
+          },
+          fontFamily: {
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+            'fade-in': 'fadeIn 1.2s ease-out forwards',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'line-draw': 'lineDraw 2s ease-out forwards',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(30px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            lineDraw: {
+              '0%': { strokeDashoffset: '200' },
+              '100%': { strokeDashoffset: '0' },
+            },
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Base ──────────────────────────────── */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    ::selection { background: rgba(139,44,44,0.4); color: #e8e4de; }
+    html { font-size: 16px; }
+    body {
+      background: #0a0a0a;
+      color: #e8e4de;
+      font-family: 'Inter', system-ui, sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── Scroll-triggered reveal ──────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.30s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* ── Logo line drawing ────────────────── */
+    .logo-path {
+      stroke-dasharray: 200;
+      stroke-dashoffset: 200;
+      animation: lineDraw 2.5s cubic-bezier(0.65,0,0.35,1) forwards;
+    }
+    @keyframes lineDraw {
+      to { stroke-dashoffset: 0; }
+    }
+
+    /* ── CTA Glow ─────────────────────────── */
+    .cta-btn {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(135deg, rgba(139,44,44,0.6), transparent, rgba(139,44,44,0.3));
+      border-radius: inherit;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .cta-btn:hover::before { opacity: 1; }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(139,44,44,0.25), 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    /* ── Accordion ─────────────────────────── */
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.16,1,0.3,1), padding 0.5s ease;
+    }
+    .accordion-item.active .accordion-content {
+      max-height: 300px;
+    }
+    .accordion-item.active .accordion-icon {
+      transform: rotate(45deg);
+    }
+    .accordion-icon {
+      transition: transform 0.3s ease;
+    }
+
+    /* ── Divider ───────────────────────────── */
+    .divider-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(139,44,44,0.3), rgba(168,168,168,0.15), transparent);
+    }
+
+    /* ── Noise texture overlay ─────────────── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    /* ── Testimonial card hover ─────────────── */
+    .testimonial-card {
+      transition: transform 0.4s ease, border-color 0.4s ease;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(139,44,44,0.4);
+    }
+
+    /* ── Pillar card ────────────────────────── */
+    .pillar-card {
+      transition: transform 0.4s ease, background 0.4s ease;
+    }
+    .pillar-card:hover {
+      transform: translateY(-6px);
+      background: #1a1a1a;
+    }
+
+    /* ── Custom scrollbar ──────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0a0a; }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #8b2c2c; }
+  </style>
+</head>
+
+<body>
+
+<!-- Auth Modal (Hidden by default) -->
+<div id="auth-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+  <div class="bg-surface border border-white/10 rounded-sm w-full max-w-md p-8 relative transform scale-95 transition-transform duration-300" id="auth-modal-content">
+    <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-silver hover:text-white pb-1">✕</button>
+    
+    <div id="auth-form-container">
+      <h3 id="auth-title" class="font-display text-3xl text-bone mb-2">Initialize Protocol</h3>
+      <p id="auth-subtitle" class="text-silver text-sm mb-6 font-mono tracking-widest uppercase">Create an account to continue</p>
+      
+      <form id="auth-form" onsubmit="handleAuthSubmit(event)" class="space-y-4">
+        <div id="name-fields" class="flex gap-4">
+          <div class="w-1/2">
+            <label class="block text-xs font-mono text-silver mb-1 uppercase tracking-widest">First Name</label>
+            <input type="text" id="auth-first" class="w-full bg-charcoal border border-white/10 rounded-sm px-4 py-3 text-bone focus:border-accent focus:outline-none transition-colors" required>
+          </div>
+          <div class="w-1/2">
+            <label class="block text-xs font-mono text-silver mb-1 uppercase tracking-widest">Last Name</label>
+            <input type="text" id="auth-last" class="w-full bg-charcoal border border-white/10 rounded-sm px-4 py-3 text-bone focus:border-accent focus:outline-none transition-colors" required>
+          </div>
+        </div>
+        
+        <div>
+          <label class="block text-xs font-mono text-silver mb-1 uppercase tracking-widest">Email</label>
+          <input type="email" id="auth-email" class="w-full bg-charcoal border border-white/10 rounded-sm px-4 py-3 text-bone focus:border-accent focus:outline-none transition-colors" required>
+        </div>
+        
+        <div>
+          <label class="block text-xs font-mono text-silver mb-1 uppercase tracking-widest">Password</label>
+          <input type="password" id="auth-password" class="w-full bg-charcoal border border-white/10 rounded-sm px-4 py-3 text-bone focus:border-accent focus:outline-none transition-colors" required>
+        </div>
+
+        <div id="auth-error" class="hidden text-accent text-sm mt-2"></div>
+        
+        <button type="submit" id="auth-submit-btn" class="w-full bg-accent hover:bg-accentHover text-bone font-mono font-semibold text-sm uppercase tracking-[0.2em] py-4 rounded-sm transition-colors mt-6 flex items-center justify-center gap-2">
+          <span>Continue</span>
+          <div id="auth-loader" class="hidden w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+        </button>
+      </form>
+      
+      <p class="text-center mt-6 text-sm text-silver">
+        <span id="auth-toggle-text">Already have an account?</span> 
+        <button onclick="toggleAuthMode()" class="text-accent hover:text-white underline underline-offset-4 font-mono tracking-widest text-xs uppercase" id="auth-toggle-btn">Login</button>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Header Auth Link -->
+<div class="absolute top-6 right-6 z-40" id="header-auth">
+  <button onclick="openAuthModal('login')" class="text-xs font-mono tracking-widest uppercase text-silver/60 hover:text-white transition-colors">Member Login</button>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HERO SECTION
+     ═══════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen flex flex-col items-center justify-center px-6 py-20 text-center">
+  <!-- Ambient gradient -->
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(139,44,44,0.08) 0%, transparent 70%);"></div>
+
+  <!-- Logo + Brand -->
+  <div class="relative z-10 mb-10 animate-fade-in">
+    <!-- Stylised "t" logo SVG -->
+    <svg width="72" height="88" viewBox="0 0 72 88" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-6" aria-label="The Threshold Program logo">
+      <!-- Vertical stroke with subtle S-curve -->
+      <path class="logo-path" d="M36 8 C34 28, 38 44, 36 80" stroke="#8b2c2c" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <!-- Crossbar: fluid sweep -->
+      <path class="logo-path" d="M12 32 C20 28, 52 28, 60 32" stroke="#8b2c2c" stroke-width="3" stroke-linecap="round" fill="none" style="animation-delay: 0.6s;"/>
+      <!-- Subtle serif foot -->
+      <path class="logo-path" d="M28 80 C32 78, 40 78, 44 80" stroke="#8b2c2c" stroke-width="2" stroke-linecap="round" fill="none" style="animation-delay: 1.1s;"/>
+    </svg>
+    <p class="font-mono text-xs tracking-[0.35em] uppercase text-silver">The Threshold Program</p>
+  </div>
+
+  <!-- Headline -->
+  <h1 class="relative z-10 font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[1.05] max-w-5xl mx-auto mb-8 animate-fade-in" style="animation-delay: 0.3s;">
+    You've been circling long enough.<br class="hidden sm:block"/>
+    <span class="text-accent">Cross the threshold.</span>
+  </h1>
+
+  <!-- Sub-headline -->
+  <p class="relative z-10 font-body text-lg sm:text-xl text-silver max-w-2xl mx-auto mb-12 leading-relaxed animate-fade-in" style="animation-delay: 0.6s;">
+    A 7-day intensive transformation protocol for driven individuals. This isn't a cost—it's the highest ROI investment you will ever make in your own compounding growth.
+  </p>
+
+  <!-- CTA -->
+  <button onclick="handleMainAction()" id="hero-cta" class="cta-btn relative z-10 inline-block px-10 py-4 bg-accent text-bone font-body font-semibold text-sm uppercase tracking-[0.2em] rounded-sm animate-fade-in" style="animation-delay: 0.9s;">
+    <span id="hero-cta-text">Enter The Threshold</span>
+  </button>
+
+  <!-- Scroll hint -->
+  <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-fade-in" style="animation-delay: 1.5s;">
+    <div class="w-[1px] h-12 bg-gradient-to-b from-accent/40 to-transparent mx-auto"></div>
+  </div>
+</section>
+
+<!-- Divider -->
+<div class="divider-line mx-auto w-full max-w-5xl"></div>
+
+<!-- ═══════════════════════════════════════════
+     THE AGITATION — "BEFORE" SECTION
+     ═══════════════════════════════════════════ -->
+<section id="agitation" class="py-24 sm:py-32 px-6">
+  <div class="max-w-3xl mx-auto">
+    <p class="reveal font-mono text-sm tracking-[0.3em] uppercase text-accent mb-12">The Problem</p>
+
+    <div class="space-y-8 text-lg sm:text-xl leading-relaxed text-silver">
+      <p class="reveal">
+        You know you're capable of more. You can feel it — a quiet, constant pressure beneath everything you do. And yet, you keep waking up to the same patterns, the same half-measures, the same version of yourself.
+      </p>
+      <p class="reveal reveal-delay-1">
+        You've consumed the content. You've read the books. You've started and stopped more times than you can count. <span class="text-bone font-medium">None of it stuck.</span>
+      </p>
+      <p class="reveal reveal-delay-2">
+        Because the barrier isn't information. It isn't motivation. It's something deeper — an invisible architecture of beliefs, habits, and identity that keeps pulling you back to baseline. Every. Single. Time.
+      </p>
+      <p class="reveal reveal-delay-3 text-bone font-display font-semibold text-3xl sm:text-4xl italic leading-snug mt-12">
+        "The cage isn't locked. You just forgot you have the key."
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Divider -->
+<div class="divider-line mx-auto w-full max-w-5xl"></div>
+
+<!-- ═══════════════════════════════════════════
+     THE PARADIGM SHIFT — SOLUTION SECTION
+     ═══════════════════════════════════════════ -->
+<section id="solution" class="py-24 sm:py-32 px-6">
+  <div class="max-w-5xl mx-auto">
+    <p class="reveal font-mono text-sm tracking-[0.3em] uppercase text-accent mb-6">The Shift</p>
+    <h2 class="reveal font-display text-4xl sm:text-5xl md:text-6xl leading-[1.15] mb-8 max-w-3xl">
+      A system built to dismantle what's holding you back — and install what moves you forward.
+    </h2>
+    <p class="reveal text-silver text-lg leading-relaxed max-w-2xl mb-20">
+      The Threshold Program isn't another course—it is a 7-day financial and psychological investment in your own operational capacity. Over just 7 intensive days, you will dismantle the internal operating system holding you back and install the routines of a top performer.
+    </p>
+
+    <!-- 3 Pillars -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Pillar 1 -->
+      <div class="reveal pillar-card border border-white/[0.06] rounded-sm p-8 sm:p-10 bg-surface">
+        <!-- Icon -->
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" class="mb-6">
+          <circle cx="20" cy="20" r="18" stroke="#8b2c2c" stroke-width="1.5" fill="none"/>
+          <circle cx="20" cy="20" r="6" stroke="#8b2c2c" stroke-width="1.5" fill="none"/>
+          <line x1="20" y1="2" x2="20" y2="14" stroke="#8b2c2c" stroke-width="1" opacity="0.5"/>
+          <line x1="20" y1="26" x2="20" y2="38" stroke="#8b2c2c" stroke-width="1" opacity="0.5"/>
+        </svg>
+        <h3 class="font-display font-semibold text-2xl sm:text-3xl mb-4">Identity Recalibration</h3>
+        <p class="text-silver text-sm leading-relaxed">
+          Strip away the borrowed beliefs and inherited limitations. Discover the core operating principles that define your highest self — then anchor them into daily reality.
+        </p>
+      </div>
+
+      <!-- Pillar 2 -->
+      <div class="reveal reveal-delay-1 pillar-card border border-white/[0.06] rounded-sm p-8 sm:p-10 bg-surface">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" class="mb-6">
+          <rect x="4" y="4" width="32" height="32" rx="2" stroke="#8b2c2c" stroke-width="1.5" fill="none"/>
+          <line x1="4" y1="20" x2="36" y2="20" stroke="#8b2c2c" stroke-width="1" opacity="0.5"/>
+          <line x1="20" y1="4" x2="20" y2="36" stroke="#8b2c2c" stroke-width="1" opacity="0.5"/>
+          <circle cx="20" cy="20" r="3" fill="#8b2c2c" opacity="0.7"/>
+        </svg>
+        <h3 class="font-display font-semibold text-2xl sm:text-3xl mb-4">Behavioral Architecture</h3>
+        <p class="text-silver text-sm leading-relaxed">
+          Build an environment and routine ecosystem that makes discipline effortless. Replace willpower with structure. Replace hope with systems that produce results on autopilot.
+        </p>
+      </div>
+
+      <!-- Pillar 3 -->
+      <div class="reveal reveal-delay-2 pillar-card border border-white/[0.06] rounded-sm p-8 sm:p-10 bg-surface">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" class="mb-6">
+          <path d="M8 32 L20 8 L32 32" stroke="#8b2c2c" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+          <line x1="14" y1="22" x2="26" y2="22" stroke="#8b2c2c" stroke-width="1" opacity="0.5"/>
+          <circle cx="20" cy="15" r="2" fill="#8b2c2c" opacity="0.7"/>
+        </svg>
+        <h3 class="font-display font-semibold text-2xl sm:text-3xl mb-4">Momentum Engineering</h3>
+        <p class="text-silver text-sm leading-relaxed">
+          Learn to create, sustain, and compound forward motion. Master the psychological triggers that turn isolated actions into irreversible trajectories of growth.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Divider -->
+<div class="divider-line mx-auto w-full max-w-5xl"></div>
+
+<!-- ═══════════════════════════════════════════
+     SOCIAL PROOF / TESTIMONIALS
+     ═══════════════════════════════════════════ -->
+<section id="testimonials" class="py-24 sm:py-32 px-6">
+  <div class="max-w-5xl mx-auto">
+    <p class="reveal font-mono text-sm tracking-[0.3em] uppercase text-accent mb-6">Proof of Crossing</p>
+    <h2 class="reveal font-display text-4xl sm:text-5xl md:text-6xl leading-[1.15] mb-16">
+      Words from those who<br class="hidden sm:block"/> already crossed.
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Testimonial 1 -->
+      <div class="reveal testimonial-card border border-white/[0.06] rounded-sm p-8 sm:p-10 bg-surface">
+        <p class="text-bone text-lg leading-relaxed mb-6 font-body">
+          "In 90 days I went from paralyzed by overthinking to running a business that does $40K/month. The shift wasn't tactical — it was <em>who I became</em> inside the program."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent text-xs font-mono">A.R.</div>
+          <div>
+            <p class="text-bone text-sm font-medium">Arjun R.</p>
+            <p class="text-silver text-xs">Founder & Operator</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="reveal reveal-delay-1 testimonial-card border border-white/[0.06] rounded-sm p-8 sm:p-10 bg-surface">
+        <p class="text-bone text-lg leading-relaxed mb-6 font-body">
+          "I'd tried every productivity system, every coach, every framework. The Threshold was different — it didn't give me more to do. It removed what was in the way."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent text-xs font-mono">S.M.</div>
+          <div>
+            <p class="text-bone text-sm font-medium">Sofia M.</p>
+            <p class="text-silver text-xs">Creative Director</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="reveal testimonial-card border border-white/[0.06] rounded-sm p-8 sm:p-10 bg-surface">
+        <p class="text-bone text-lg leading-relaxed mb-6 font-body">
+          "I dropped 14kg, doubled my income, and rebuilt my relationship with my father. The 7-day protocol gave me the exact architecture to make that happen."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent text-xs font-mono">D.K.</div>
+          <div>
+            <p class="text-bone text-sm font-medium">Daniel K.</p>
+            <p class="text-silver text-xs">Former Investment Analyst</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 4 -->
+      <div class="reveal reveal-delay-1 testimonial-card border border-white/[0.06] rounded-sm p-8 sm:p-10 bg-surface">
+        <p class="text-bone text-lg leading-relaxed mb-6 font-body">
+          "I was skeptical. I'd been burned before. But this wasn't hype — it was surgery. Precise, uncomfortable, and life-changing. I finally trust my own decisions."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent text-xs font-mono">L.C.</div>
+          <div>
+            <p class="text-bone text-sm font-medium">Lena C.</p>
+            <p class="text-silver text-xs">Psychologist & Author</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Divider -->
+<div class="divider-line mx-auto w-full max-w-5xl"></div>
+
+<!-- ═══════════════════════════════════════════
+     WHAT'S INSIDE — CURRICULUM
+     ═══════════════════════════════════════════ -->
+<section id="curriculum" class="py-24 sm:py-32 px-6">
+  <div class="max-w-3xl mx-auto">
+    <p class="reveal font-mono text-sm tracking-[0.3em] uppercase text-accent mb-6">The Architecture</p>
+    <h2 class="reveal font-display text-4xl sm:text-5xl md:text-6xl leading-[1.15] mb-8">
+      7 Days. Zero Friction.<br/>One Irreversible ROI.
+    </h2>
+    <p class="reveal text-silver text-lg leading-relaxed mb-16">
+      For an investment of just ₹2,000 per day over 7 days, you are purchasing the exact frameworks that top performers use to compress years of progress into weeks.
+    </p>
+
+    <!-- Accordion -->
+    <div class="space-y-3">
+      <!-- Day 1 -->
+      <div class="reveal accordion-item border border-white/[0.06] rounded-sm bg-surface cursor-pointer" onclick="toggleAccordion(this)">
+        <div class="flex items-center justify-between p-6 sm:p-8">
+          <div class="flex items-baseline gap-4">
+            <span class="font-mono text-sm text-accent">01</span>
+            <div>
+              <h3 class="font-display font-semibold text-2xl sm:text-3xl">The Awakening Audit</h3>
+              <p class="text-silver text-sm mt-1">Day 1</p>
+            </div>
+          </div>
+          <span class="accordion-icon text-accent text-2xl font-light select-none">+</span>
+        </div>
+        <div class="accordion-content px-6 sm:px-8">
+          <div class="pb-6 sm:pb-8 pl-10 border-t border-white/[0.04] pt-6">
+            <p class="text-silver text-sm leading-relaxed">
+              Identify the invisible scripts dictating your limits. An uncompromising self-audit to discover what is truly costing you momentum.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 & 3 -->
+      <div class="reveal accordion-item border border-white/[0.06] rounded-sm bg-surface cursor-pointer" onclick="toggleAccordion(this)">
+        <div class="flex items-center justify-between p-6 sm:p-8">
+          <div class="flex items-baseline gap-4">
+            <span class="font-mono text-sm text-accent">02</span>
+            <div>
+              <h3 class="font-display font-semibold text-2xl sm:text-3xl">System Restructure</h3>
+              <p class="text-silver text-sm mt-1">Days 2 & 3</p>
+            </div>
+          </div>
+          <span class="accordion-icon text-accent text-2xl font-light select-none">+</span>
+        </div>
+        <div class="accordion-content px-6 sm:px-8">
+          <div class="pb-6 sm:pb-8 pl-10 border-t border-white/[0.04] pt-6">
+            <p class="text-silver text-sm leading-relaxed">
+              Destroy bad habits and install a friction-free behavioral architecture. Replace raw willpower with an environment that makes discipline automatic.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 4 & 5 -->
+      <div class="reveal accordion-item border border-white/[0.06] rounded-sm bg-surface cursor-pointer" onclick="toggleAccordion(this)">
+        <div class="flex items-center justify-between p-6 sm:p-8">
+          <div class="flex items-baseline gap-4">
+            <span class="font-mono text-sm text-accent">03</span>
+            <div>
+              <h3 class="font-display font-semibold text-2xl sm:text-3xl">Momentum & Focus</h3>
+              <p class="text-silver text-sm mt-1">Days 4 & 5</p>
+            </div>
+          </div>
+          <span class="accordion-icon text-accent text-2xl font-light select-none">+</span>
+        </div>
+        <div class="accordion-content px-6 sm:px-8">
+          <div class="pb-6 sm:pb-8 pl-10 border-t border-white/[0.04] pt-6">
+            <p class="text-silver text-sm leading-relaxed">
+              Protect your attention. Master the state transitions required to drop into deep, needle-moving work instantly. Compounding output begins here.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 6 & 7 -->
+      <div class="reveal accordion-item border border-white/[0.06] rounded-sm bg-surface cursor-pointer" onclick="toggleAccordion(this)">
+        <div class="flex items-center justify-between p-6 sm:p-8">
+          <div class="flex items-baseline gap-4">
+            <span class="font-mono text-sm text-accent">04</span>
+            <div>
+              <h3 class="font-display font-semibold text-2xl sm:text-3xl">Integration & The Future</h3>
+              <p class="text-silver text-sm mt-1">Days 6 & 7</p>
+            </div>
+          </div>
+          <span class="accordion-icon text-accent text-2xl font-light select-none">+</span>
+        </div>
+        <div class="accordion-content px-6 sm:px-8">
+          <div class="pb-6 sm:pb-8 pl-10 border-t border-white/[0.04] pt-6">
+            <p class="text-silver text-sm leading-relaxed">
+              Lock the new operating system into place. Calculate your exact trajectory and build the personal firewall necessary to never regress to your old baseline.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Divider -->
+<div class="divider-line mx-auto w-full max-w-5xl"></div>
+
+<!-- ═══════════════════════════════════════════
+     FINAL CTA SECTION
+     ═══════════════════════════════════════════ -->
+<section id="apply" class="relative py-28 sm:py-40 px-6 text-center">
+  <!-- Background glow -->
+  <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 50% 60% at 50% 100%, rgba(139,44,44,0.1) 0%, transparent 70%);"></div>
+
+  <div class="relative z-10 max-w-3xl mx-auto">
+    <!-- Small logo -->
+    <svg width="48" height="56" viewBox="0 0 72 88" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-10 reveal opacity-60">
+      <path d="M36 8 C34 28, 38 44, 36 80" stroke="#8b2c2c" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M12 32 C20 28, 52 28, 60 32" stroke="#8b2c2c" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M28 80 C32 78, 40 78, 44 80" stroke="#8b2c2c" stroke-width="2" stroke-linecap="round" fill="none"/>
+    </svg>
+
+    <h2 class="reveal font-display text-4xl sm:text-5xl md:text-6xl leading-[1.15] mb-6">
+      The door is open.<br/>But not for long.
+    </h2>
+    <p class="reveal text-silver text-lg sm:text-xl leading-relaxed mb-4 max-w-xl mx-auto">
+      Cohorts are strictly limited to ensure depth, accountability, and transformation — not volume. 
+    </p>
+    <p class="reveal font-mono text-sm tracking-[0.3em] uppercase text-accent mb-12">
+      Next cohort begins May 2026 · 18 spots remaining
+    </p>
+
+    <button onclick="handleMainAction()" id="bottom-cta" class="cta-btn reveal inline-block px-12 py-5 bg-accent text-bone font-body font-semibold text-sm uppercase tracking-[0.2em] rounded-sm">
+      <span id="bottom-cta-text">Apply Now</span>
+    </button>
+
+    <p class="reveal text-silver/50 text-xs mt-8 font-mono">
+      Application takes 2 minutes · No commitment required
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ -->
+<footer class="border-t border-white/[0.06] py-12 px-6">
+  <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+    <!-- Logo mini -->
+    <div class="flex items-center gap-3">
+      <svg width="24" height="30" viewBox="0 0 72 88" fill="none" xmlns="http://www.w3.org/2000/svg" class="opacity-40">
+        <path d="M36 8 C34 28, 38 44, 36 80" stroke="#8b2c2c" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <path d="M12 32 C20 28, 52 28, 60 32" stroke="#8b2c2c" stroke-width="4" stroke-linecap="round" fill="none"/>
+      </svg>
+      <span class="text-silver/40 text-xs font-mono">© 2026 The Threshold Program</span>
+    </div>
+
+    <!-- Links -->
+    <div class="flex items-center gap-6">
+      <a href="#" class="text-silver/40 hover:text-bone text-xs font-mono transition-colors duration-300">Terms</a>
+      <a href="#" class="text-silver/40 hover:text-bone text-xs font-mono transition-colors duration-300">Privacy</a>
+      <a href="#" class="text-silver/40 hover:text-bone text-xs font-mono transition-colors duration-300">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     SCRIPTS
+     ═══════════════════════════════════════════ -->
+<script src="/js/api.js"></script>
+<script>
+  // ── Scroll Reveal ──────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        entry.target.style.opacity = '1';
+        entry.target.classList.add('animate-fade-in-up');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -60px 0px'
+  });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Accordion Toggle ──────────────────────
+  function toggleAccordion(item) {
+    const isActive = item.classList.contains('active');
+    // Close all
+    document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+    // Open clicked (if it wasn't already open)
+    if (!isActive) {
+      item.classList.add('active');
+    }
+  }
+
+  // ── Smooth parallax on hero ───────────────
+  window.addEventListener('scroll', () => {
+    const hero = document.getElementById('hero');
+    if (hero) {
+      const scrolled = window.scrollY;
+      hero.style.transform = `translateY(${scrolled * 0.15}px)`;
+      hero.style.opacity = Math.max(1 - scrolled / 800, 0);
+    }
+  }, { passive: true });
+
+  // ─── STATE & DOM ──────────────────────────────────────────
+  let authMode = 'register'; 
+  const user = api.getUser();
+
+  document.addEventListener('DOMContentLoaded', () => {
+    updateUIForAuth();
+    handleStripeRedirects();
+  });
+
+  // ─── AUTHENTICATION UI ───────────────────────────────────
+  function updateUIForAuth() {
+    const headerAuth = document.getElementById('header-auth');
+    const heroBtn = document.getElementById('hero-cta-text');
+    const bottomBtn = document.getElementById('bottom-cta-text');
+
+    if (api.getToken() && user) {
+      if(headerAuth) headerAuth.innerHTML = `<button onclick="goToDashboard()" class="text-xs font-mono tracking-widest uppercase text-silver/60 hover:text-accent transition-colors">Portal Access</button>`;
+      
+      if (user.hasPurchased) {
+        if(heroBtn) heroBtn.textContent = 'Access Your Material';
+        if(bottomBtn) bottomBtn.textContent = 'Access Portal';
+      } else {
+        if(heroBtn) heroBtn.textContent = 'Complete Enrollment';
+        if(bottomBtn) bottomBtn.textContent = 'Proceed to Checkout';
+      }
+    } else {
+      if(headerAuth) headerAuth.innerHTML = `<button onclick="openAuthModal('login')" class="text-xs font-mono tracking-widest uppercase text-silver/60 hover:text-white transition-colors">Member Login</button>`;
+      if(heroBtn) heroBtn.textContent = 'Enter The Threshold';
+      if(bottomBtn) bottomBtn.textContent = 'Apply Now';
+    }
+  }
+
+  // ─── MAIN CTA ACTION ─────────────────────────────────────
+  async function handleMainAction() {
+    const token = api.getToken();
+    
+    if (!token) {
+      openAuthModal('register');
+      return;
+    }
+
+    if (user && user.hasPurchased) {
+      goToDashboard();
+      return;
+    }
+
+    try {
+      const heroBtn = document.getElementById('hero-cta');
+      if(heroBtn) {
+        heroBtn.style.opacity = '0.5';
+        heroBtn.style.pointerEvents = 'none';
+      }
+      // Initiate Razorpay checkout flow (pop-up modal)
+      await api.payments.initiateCheckout('full_program', 'inr');
+    } catch (err) {
+      alert(err.message || 'Could not start checkout.');
+      const heroBtn = document.getElementById('hero-cta');
+      if(heroBtn) {
+        heroBtn.style.opacity = '1';
+        heroBtn.style.pointerEvents = 'auto';
+      }
+    }
+  }
+
+  function goToDashboard() {
+    window.location.href = '/dashboard.html';
+  }
+
+  // ─── AUTH MODAL LOGIC ────────────────────────────────────
+  function openAuthModal(mode) {
+    const modal = document.getElementById('auth-modal');
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+      modal.classList.remove('opacity-0');
+      document.getElementById('auth-modal-content').classList.remove('scale-95');
+    }, 10);
+
+    if (mode === 'login') {
+      authMode = 'login';
+      setAuthModeLogin();
+    } else {
+      authMode = 'register';
+      setAuthModeRegister();
+    }
+  }
+
+  function closeAuthModal() {
+    const modal = document.getElementById('auth-modal');
+    modal.classList.add('opacity-0');
+    document.getElementById('auth-modal-content').classList.add('scale-95');
+    
+    setTimeout(() => {
+      modal.classList.add('hidden');
+    }, 300);
+  }
+
+  function toggleAuthMode() {
+    authMode = authMode === 'register' ? 'login' : 'register';
+    if (authMode === 'login') setAuthModeLogin();
+    else setAuthModeRegister();
+  }
+
+  function setAuthModeLogin() {
+    document.getElementById('auth-title').textContent = 'Secure Access';
+    document.getElementById('auth-subtitle').textContent = 'Enter your credentials to continue';
+    document.getElementById('name-fields').classList.add('hidden');
+    document.getElementById('auth-first').removeAttribute('required');
+    document.getElementById('auth-last').removeAttribute('required');
+    document.getElementById('auth-submit-btn').querySelector('span').textContent = 'Enter';
+    document.getElementById('auth-toggle-text').textContent = "Don't have an account?";
+    document.getElementById('auth-toggle-btn').textContent = 'Apply Now';
+    document.getElementById('auth-error').classList.add('hidden');
+  }
+
+  function setAuthModeRegister() {
+    document.getElementById('auth-title').textContent = 'Initialize Protocol';
+    document.getElementById('auth-subtitle').textContent = 'Create an account to continue';
+    document.getElementById('name-fields').classList.remove('hidden');
+    document.getElementById('auth-first').setAttribute('required', 'true');
+    document.getElementById('auth-last').setAttribute('required', 'true');
+    document.getElementById('auth-submit-btn').querySelector('span').textContent = 'Continue';
+    document.getElementById('auth-toggle-text').textContent = "Already have an account?";
+    document.getElementById('auth-toggle-btn').textContent = 'Login';
+    document.getElementById('auth-error').classList.add('hidden');
+  }
+
+  async function handleAuthSubmit(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById('auth-email').value;
+    const password = document.getElementById('auth-password').value;
+    const first = document.getElementById('auth-first').value;
+    const last = document.getElementById('auth-last').value;
+    const errObj = document.getElementById('auth-error');
+    const submitBtn = document.getElementById('auth-submit-btn');
+    const btnText = submitBtn.querySelector('span');
+    const loader = document.getElementById('auth-loader');
+
+    errObj.classList.add('hidden');
+    btnText.classList.add('opacity-0');
+    loader.classList.remove('hidden');
+    submitBtn.disabled = true;
+
+    try {
+      if (authMode === 'register') {
+        await api.auth.register(first, last, email, password);
+      } else {
+        await api.auth.login(email, password);
+      }
+
+      closeAuthModal();
+      window.location.reload(); 
+
+    } catch (err) {
+      errObj.textContent = err.message || 'Authentication failed.';
+      errObj.classList.remove('hidden');
+      btnText.classList.remove('opacity-0');
+      loader.classList.add('hidden');
+      submitBtn.disabled = false;
+    }
+  }
+
+  function handleStripeRedirects() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionId = urlParams.get('session_id');
+
+    if (sessionId) {
+      window.history.replaceState({}, document.title, window.location.pathname);
+      api.auth.getMe().then(user => {
+        if (user.hasPurchased) {
+          goToDashboard();
+        }
+      }).catch(console.error);
+    }
+  }
+</script>
+
+</body>
+</html>
