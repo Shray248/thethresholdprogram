@@ -38,7 +38,7 @@ async function createOrder(req, res) {
 
     // ─── Bulletproof Amount Logic ────────────────────
     // Direct Rupees value (e.g. 5000)
-    const rawAmount = 28000; 
+    const rawAmount = 1; 
     const amountInPaise = rawAmount * 100; 
 
     // ─── Create Razorpay Order ───────────────────────
