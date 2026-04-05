@@ -23,25 +23,28 @@ const { handleWebhook } = require('./controllers/paymentController');
 
 const app = express();
 
+// 👇 RAILWAY KE LIYE PROXY TRUST ENABLE KIYA (Rate limiter errors theek karne ke liye) 👇
+app.set('trust proxy', true);
+
 // ═══════════════════════════════════════════════════════════
 // SECURITY MIDDLEWARE
 // ═══════════════════════════════════════════════════════════
 
 app.use(helmet());
 
-// 👇 YAHAN MAINE CORS KO UPDATE KAR DIYA HAI VIP PASS KE SATH 👇
+// 👇 ULTIMATE CORS FIX (Sabhi devices aur phones ko allow karne ke liye) 👇
 app.use(cors({
-  origin: [
-    'https://thethresholdprogram.in',
-    'https://www.thethresholdprogram.in',
-    'http://localhost:5500',
-    'http://127.0.0.1:5500',
-    config.frontendUrl
-  ],
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile browsers strict mode)
+    if (!origin) return callback(null, true);
+    // Allow all origins for public checkout access
+    return callback(null, true); 
+  },
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
   credentials: true,
-  maxAge: 86400,
+  preflightContinue: false,
+  optionsSuccessStatus: 200 // Purane mobile browsers ke liye zaroori (204 pe crash hote hain)
 }));
 
 app.use(requestLogger);
