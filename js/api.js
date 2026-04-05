@@ -42,15 +42,15 @@ const api = {
       }
 
       if (!response.ok) {
-        throw new Error(data.error || `API Request Failed (Status: ${response.status})`);
+        throw new Error(data.error || `Request Failed. Please check your details.`);
       }
 
       return data;
     } catch (err) {
-      // 👇 LIE DETECTOR REMOVED - CLEAN CUSTOMER ERROR ADDED 👇
+      // 👇 YAHAN SE POPUP ALERT HATA DIYA HAI 👇
+      // Ab error directly tumhare Apply.html ke Red Box mein show hoga!
       console.error(`[API Error] ${endpoint}:`, err.message);
-      alert("⚠️ Connection Error. Please check your internet and try again.");
-      throw err;
+      throw err; 
     }
   },
 
