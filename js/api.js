@@ -4,10 +4,10 @@
 // Handles application submission → Razorpay checkout integration.
 // ═══════════════════════════════════════════════════════════
 
-// 👇 YAHAN MAINE LINK UPDATE KAR DIYA HAI 👇
+// 👇 YAHAN NAYA RAILWAY LINK UPDATE KAR DIYA HAI 👇
 const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
   ? 'http://localhost:4000/api'
-  : 'https://179qncu6.up.railway.app/api';
+  : 'https://thethresholdprogram-production.up.railway.app/api';
 
 const api = {
   /**
