@@ -32,20 +32,10 @@ app.set('trust proxy', true);
 
 app.use(helmet());
 
-// 👇 ULTIMATE CORS FIX (Sabhi devices aur phones ko allow karne ke liye) 👇
-app.use(cors({
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile browsers strict mode)
-    if (!origin) return callback(null, true);
-    // Allow all origins for public checkout access
-    return callback(null, true); 
-  },
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
-  credentials: true,
-  preflightContinue: false,
-  optionsSuccessStatus: 200 // Purane mobile browsers ke liye zaroori (204 pe crash hote hain)
-}));
+// 👇 ─── THE ULTIMATE CORS FIX (SABSE UPAR RAKHNA HAI) ─── 👇
+app.use(cors());             // Har website se traffic allow karega
+app.options('*', cors());    // Apple/Safari ke preflight check ko hamesha PASS karega
+// 👆 ────────────────────────────────────────────────────── 👆
 
 app.use(requestLogger);
 
