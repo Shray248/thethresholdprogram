@@ -31,14 +31,24 @@ const api = {
         headers,
       });
 
-      const data = await response.json();
+      // 🚨 DEEP FIX: Check if Railway sent a real response or an HTML Error Page
+      const contentType = response.headers.get("content-type");
+      let data;
+      if (contentType && contentType.includes("application/json")) {
+          data = await response.json();
+      } else {
+          // Agar Railway down hai ya crash ho gaya hai
+          throw new Error(`Railway Server Error! Status: ${response.status}. Expected JSON but got something else.`);
+      }
 
       if (!response.ok) {
-        throw new Error(data.error || 'API Request Failed');
+        throw new Error(data.error || `API Request Failed (Status: ${response.status})`);
       }
 
       return data;
     } catch (err) {
+      // 👇 YEH NAYI LINE ASLI ERROR SCREEN PAR DIKHAYEGI 👇
+      alert("🚨 REAL SYSTEM ERROR:\n\n" + err.message + "\n\nEndpoint: " + endpoint);
       console.error(`[API Error] ${endpoint}:`, err.message);
       throw err;
     }
@@ -49,9 +59,6 @@ const api = {
   // ═══════════════════════════════════════════════════════════
 
   payments: {
-    /**
-     * POST /api/payments/create-order
-     */
     async createOrder(buyerInfo) {
       const res = await api.request('/payments/create-order', {
         method: 'POST',
@@ -60,9 +67,6 @@ const api = {
       return res.data;
     },
 
-    /**
-     * POST /api/payments/verify
-     */
     async verifyPayment(razorpay_order_id, razorpay_payment_id, razorpay_signature) {
       const res = await api.request('/payments/verify', {
         method: 'POST',
@@ -71,11 +75,7 @@ const api = {
       return res;
     },
 
-    /**
-     * Initiates Razorpay checkout with buyer info prefilled.
-     */
     async initiateCheckout(buyerInfo) {
-      
       // 1. Create the order on our backend with buyer info
       const orderData = await this.createOrder(buyerInfo);
 
@@ -90,7 +90,6 @@ const api = {
               document.body.appendChild(script);
             });
         } catch (error) {
-            // Agar ad-blocker ki wajah se script load fail ho jaye
             alert("⚠️ Payment Script Blocked!\n\nLagta hai aap Brave browser ya Ad-blocker use kar rahe hain. Kripya normal Chrome/Safari mein try karein.");
             return null;
         }
@@ -109,14 +108,12 @@ const api = {
           color: '#000000',
         },
         handler: async function (response) {
-          // Payment successful — verify on backend
           try {
             await api.payments.verifyPayment(
               response.razorpay_order_id,
               response.razorpay_payment_id,
               response.razorpay_signature,
             );
-            // Show success page
             window.location.href = '/success.html';
           } catch (err) {
             alert('Payment received but verification failed. Please contact support.');
@@ -204,7 +201,6 @@ const api = {
 };
 
 // 👇 ─── SAFE INSTAGRAM OVERRIDE (FILE KE END MEIN) ─── 👇
-// Yeh code form load hote hi usko chupa dega, taaki error aane ka koi chance hi na rahe
 if (navigator.userAgent.includes('Instagram') || navigator.userAgent.includes('FB')) {
     const showPremiumBlocker = () => {
         document.body.innerHTML = `
