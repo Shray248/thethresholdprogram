@@ -74,7 +74,7 @@ app.use(express.urlencoded({ extended: true }));
 // Global rate limit — 100 requests per 15 minutes per IP
 const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 100,
+  max: 500,
   standardHeaders: true,
   legacyHeaders: false,
   message: {
@@ -86,7 +86,7 @@ const globalLimiter = rateLimit({
 // Payment rate limit — 10 checkout sessions per 15 minutes
 const paymentLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 10,
+  max: 100,
   standardHeaders: true,
   legacyHeaders: false,
   message: {
