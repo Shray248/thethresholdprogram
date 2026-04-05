@@ -1,0 +1,77 @@
+// ═══════════════════════════════════════════════════════════
+// THE THRESHOLD PROGRAM — PRISMA DATABASE SCHEMA
+// Simplified for direct-purchase model (no user accounts).
+// MySQL · Relational · Production-ready
+// ═══════════════════════════════════════════════════════════
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Purchase / Order Model ──────────────────────────────
+// Every payment attempt is logged here. This is the core
+// table — no user accounts needed. Razorpay collects
+// buyer details (name, email, phone) during checkout.
+model Order {
+  id                  String      @id @default(uuid())
+
+  // Buyer details — captured from application form
+  buyerName           String?
+  buyerEmail          String?
+  buyerPhone          String?
+  buyerInstagram      String?
+
+  // Application data — collected before payment
+  currentSituation    String?     @db.Text
+  investmentCapacity  String?     // "YES" | "POSSIBLY" | "NO"
+
+  // Razorpay references — source of truth
+  razorpayOrderId     String?     @unique
+  razorpayPaymentId   String?     @unique
+  razorpaySignature   String?
+
+  // Financial data
+  amount              Int         // Amount in smallest currency unit (paise)
+  currency            String      @default("INR")
+  status              OrderStatus @default(PENDING)
+
+  // Metadata
+  notes               String?     @db.Text
+  failureReason       String?
+
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
+
+  @@index([razorpayOrderId])
+  @@index([status])
+  @@index([buyerEmail])
+  @@map("orders")
+}
+
+// ─── Admin User Model ────────────────────────────────────
+// Only for admin dashboard login. No buyer accounts needed.
+model AdminUser {
+  id            String   @id @default(uuid())
+  email         String   @unique
+  passwordHash  String
+  name          String?
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("admin_users")
+}
+
+// ─── Enums ───────────────────────────────────────────────
+
+enum OrderStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}

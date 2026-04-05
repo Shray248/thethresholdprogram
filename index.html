@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Threshold Program — 7 Days to Cross Your Threshold</title>
+  <meta name="description" content="The Threshold Program is a 7-day, 7 live one-on-one session intensive where we clarify, solve, and provide inbuilt resources to help you cross your threshold phase." />
+  <meta property="og:title" content="The Threshold Program — 7 Days to Cross Your Threshold" />
+  <meta property="og:description" content="7 live 1-on-1 sessions. 7 days. Cross the threshold that's been holding you back." />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts: Archivo + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ══════════════════════════════════════════
+       RESET & BASE
+       ══════════════════════════════════════════ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #000000;
+      color: #ffffff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    ::selection {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    /* ══════════════════════════════════════════
+       TYPOGRAPHY
+       ══════════════════════════════════════════ */
+    .font-archivo {
+      font-family: 'Archivo', sans-serif;
+    }
+
+    .font-inter {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ══════════════════════════════════════════
+       LAYOUT
+       ══════════════════════════════════════════ */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ══════════════════════════════════════════
+       HERO SECTION
+       ══════════════════════════════════════════ */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 60px 24px 48px;
+      min-height: auto;
+    }
+
+    .hero-logo {
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 0.2s forwards;
+    }
+
+    .hero-logo svg {
+      width: 52px;
+      height: 52px;
+    }
+
+    .hero-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: clamp(28px, 6vw, 52px);
+      line-height: 1.15;
+      color: #ffffff;
+      max-width: 680px;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 0.4s forwards;
+    }
+
+    .hero-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      color: #a1a1aa;
+      max-width: 460px;
+      line-height: 1.65;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 0.6s forwards;
+    }
+
+    /* ══════════════════════════════════════════
+       PROGRAM DESCRIPTION BOX
+       ══════════════════════════════════════════ */
+    .program-box {
+      background: #0d0d0d;
+      border-radius: 16px;
+      padding: 40px 32px;
+      max-width: 640px;
+      width: 100%;
+      margin-bottom: 40px;
+      text-align: left;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 0.7s forwards;
+    }
+
+    .program-box-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: #ffffff;
+      margin-bottom: 16px;
+    }
+
+    .program-box p {
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px;
+      color: #a1a1aa;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .program-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .program-box .highlight {
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    .program-features {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .program-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .program-feature-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .program-feature-icon svg {
+      width: 10px;
+      height: 10px;
+    }
+
+    .program-feature span {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #d4d4d8;
+      line-height: 1.5;
+    }
+
+    /* ══════════════════════════════════════════
+       CTA BUTTON
+       ══════════════════════════════════════════ */
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      color: #000000;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 36px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-decoration: none;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 0.8s forwards;
+    }
+
+    .cta-button:hover {
+      background: #e4e4e7;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
+    }
+
+    .cta-button:active {
+      transform: translateY(0);
+    }
+
+    .cta-button .chevron {
+      font-size: 18px;
+      font-weight: 400;
+      transition: transform 0.2s ease;
+    }
+
+    .cta-button:hover .chevron {
+      transform: translateX(3px);
+    }
+
+    .cta-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .cta-button .spinner {
+      display: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(0,0,0,0.2);
+      border-top-color: #000;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+
+    .cta-button.loading .spinner {
+      display: inline-block;
+    }
+
+    .cta-button.loading .btn-text,
+    .cta-button.loading .chevron {
+      display: none;
+    }
+
+    .urgency-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: #71717a;
+      margin-top: 16px;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 0.9s forwards;
+    }
+
+    .price-text {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: #a1a1aa;
+      margin-top: 24px;
+      letter-spacing: 0.02em;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 0.85s forwards;
+    }
+
+    .price-text strong {
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    /* ══════════════════════════════════════════
+       TESTIMONIALS SECTION
+       ══════════════════════════════════════════ */
+    .testimonials {
+      padding: 80px 24px 60px;
+    }
+
+    .testimonials-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #a1a1aa;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .testimonials-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      font-size: clamp(32px, 6vw, 52px);
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 48px;
+      letter-spacing: -0.02em;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .testimonial-card {
+      background: #0d0d0d;
+      border-radius: 16px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .testimonial-quote {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 1.45;
+      color: #ffffff;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .testimonial-stars {
+      margin-bottom: 16px;
+      font-size: 20px;
+      letter-spacing: 2px;
+    }
+
+    .star {
+      color: #facc15;
+    }
+
+    .testimonial-handle {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: #71717a;
+    }
+
+    /* ══════════════════════════════════════════
+       BOTTOM CTA
+       ══════════════════════════════════════════ */
+    .bottom-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 24px 80px;
+    }
+
+    .bottom-cta .cta-button {
+      opacity: 1;
+      animation: none;
+    }
+
+    .bottom-cta .urgency-text {
+      opacity: 1;
+      animation: none;
+    }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════ */
+    .footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 24px 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .footer-logo svg {
+      width: 36px;
+      height: 36px;
+      opacity: 0.8;
+    }
+
+    .footer-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #52525b;
+      margin-top: 20px;
+    }
+
+    /* ══════════════════════════════════════════
+       ANIMATIONS
+       ══════════════════════════════════════════ */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+       ══════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 48px 20px 40px;
+      }
+
+      .hero-title {
+        font-size: clamp(24px, 7vw, 36px);
+      }
+
+      .hero-subtitle {
+        font-size: 14px;
+        padding: 0 8px;
+      }
+
+      .program-box {
+        padding: 28px 22px;
+      }
+
+      .program-box-title {
+        font-size: 18px;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .testimonial-card {
+        padding: 24px 22px;
+      }
+
+      .testimonial-quote {
+        font-size: 16px;
+      }
+
+      .cta-button {
+        font-size: 14px;
+        padding: 13px 28px;
+        width: 100%;
+        max-width: 340px;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .hero-title {
+        font-size: 22px;
+      }
+
+      .testimonial-quote {
+        font-size: 15px;
+      }
+    }
+
+    /* ══════════════════════════════════════════
+       CUSTOM SCROLLBAR
+       ══════════════════════════════════════════ */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #000;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #27272a;
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3f3f46;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════════
+     HERO SECTION
+     ═══════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <!-- Logo -->
+  <div class="hero-logo">
+    <svg viewBox="0 0 72 88" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="The Threshold Program">
+      <path d="M36 8 C34 28, 38 44, 36 80" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <path d="M12 32 C20 28, 52 28, 60 32" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <path d="M28 80 C32 78, 40 78, 44 80" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    </svg>
+  </div>
+
+  <!-- Headline -->
+  <h1 class="hero-title">
+    How I help you cross the threshold — in just 7 days of live, one‑on‑one sessions.
+  </h1>
+
+  <!-- Subtitle -->
+  <p class="hero-subtitle">
+    Real change isn't found on the surface.
+  </p>
+
+  <!-- Program Description Box -->
+  <div class="program-box">
+    <h2 class="program-box-title">What is The Threshold Program?</h2>
+    <p>
+      This is a <span class="highlight">7-day intensive</span> with <span class="highlight">7 live, one-on-one sessions</span> — designed to take you through your threshold phase. Not a course. Not a community. A direct, personal intervention.
+    </p>
+    <p>
+      Over 7 days, I work with you directly — clarifying what's actually holding you back, solving the specific problems in your path, and providing my inbuilt systems and resources to dismantle the barriers you can't see on your own.
+    </p>
+    <p>
+      By the end of these 7 sessions, <span class="highlight">your threshold phase will be crossed.</span>
+    </p>
+
+    <div class="program-features">
+      <div class="program-feature">
+        <div class="program-feature-icon">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5 L4.5 7.5 L8 2.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span>7 live one-on-one sessions — no recordings, no group calls</span>
+      </div>
+      <div class="program-feature">
+        <div class="program-feature-icon">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5 L4.5 7.5 L8 2.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span>Personalized clarity on what's actually blocking you</span>
+      </div>
+      <div class="program-feature">
+        <div class="program-feature-icon">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5 L4.5 7.5 L8 2.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span>Access to my inbuilt resources, frameworks, and systems</span>
+      </div>
+      <div class="program-feature">
+        <div class="program-feature-icon">
+          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5 L4.5 7.5 L8 2.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <span>Your threshold phase — crossed within 7 days</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Price -->
+  <p class="price-text">₹4,000 per session · <strong>₹28,000</strong> for 7 days</p>
+
+  <!-- CTA Button -->
+  <a href="/apply.html" class="cta-button" id="hero-cta">
+    <span class="btn-text">Apply for The Threshold Program</span>
+    <span class="chevron">›</span>
+  </a>
+
+  <!-- Urgency -->
+  <p class="urgency-text">Limited spots available. Application closing soon.</p>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     TESTIMONIALS SECTION
+     ═══════════════════════════════════════════ -->
+<section class="testimonials" id="testimonials">
+  <p class="testimonials-label reveal">TESTIMONIALS</p>
+  <h2 class="testimonials-title reveal">Member Stories</h2>
+
+  <div class="testimonials-grid">
+    <!-- Testimonial 1 -->
+    <div class="testimonial-card reveal">
+      <p class="testimonial-quote">
+        "I had been stuck in the same loop for 2 years. After 7 days with Shray, I finally understood what was actually holding me back — and it wasn't what I thought."
+      </p>
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testimonial-handle">- Arjun M.</p>
+    </div>
+
+    <!-- Testimonial 2 -->
+    <div class="testimonial-card reveal">
+      <p class="testimonial-quote">
+        "I was hesitant about spending ₹28,000 on 7 sessions. By day 3, I knew this was the best investment I'd ever made in myself. The clarity is unreal."
+      </p>
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testimonial-handle">- Priya S.</p>
+    </div>
+
+    <!-- Testimonial 3 -->
+    <div class="testimonial-card reveal">
+      <p class="testimonial-quote">
+        "The one-on-one format makes all the difference. No fluff, no generic advice. Every session felt like surgery — precise and exactly what I needed to hear."
+      </p>
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testimonial-handle">- Rohan K.</p>
+    </div>
+
+    <!-- Testimonial 4 -->
+    <div class="testimonial-card reveal">
+      <p class="testimonial-quote">
+        "I've done courses, coaches, and communities. Nothing moved the needle. These 7 days broke through something I couldn't break through on my own. Period."
+      </p>
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testimonial-handle">- Kavya D.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     BOTTOM CTA
+     ═══════════════════════════════════════════ -->
+<section class="bottom-cta">
+  <a href="/apply.html" class="cta-button" id="bottom-cta">
+    <span class="btn-text">Apply for The Threshold Program</span>
+    <span class="chevron">›</span>
+  </a>
+  <p class="urgency-text">Limited spots available. Application closing soon.</p>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-logo">
+    <svg viewBox="0 0 72 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M36 8 C34 28, 38 44, 36 80" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <path d="M12 32 C20 28, 52 28, 60 32" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <path d="M28 80 C32 78, 40 78, 44 80" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+    </svg>
+  </div>
+  <p class="footer-text">© 2026 India - All rights reserved.</p>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════
+     SCRIPTS
+     ═══════════════════════════════════════════ -->
+<script>
+  // ── Scroll Reveal ──────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Successful — The Threshold Program</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #000000;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+    }
+    .success-container {
+      max-width: 520px;
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out 0.2s forwards;
+    }
+    .checkmark {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 32px;
+    }
+    .checkmark svg {
+      width: 40px;
+      height: 40px;
+    }
+    h1 {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 6vw, 42px);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+    p {
+      color: #a1a1aa;
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .highlight {
+      color: #ffffff;
+      font-weight: 500;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffffff;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      margin-top: 32px;
+      padding: 12px 28px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+      transition: all 0.25s ease;
+    }
+    .back-link:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.3);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="success-container">
+    <div class="checkmark">
+      <svg viewBox="0 0 40 40" fill="none">
+        <path d="M10 20L17 27L30 13" stroke="#000" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h1>Payment Successful</h1>
+    <p>
+      Thank you for purchasing <span class="highlight">The Threshold Program</span>.
+      Your 7-day journey begins now.
+    </p>
+    <p>
+      You will receive a confirmation email shortly with details about scheduling your
+      <span class="highlight">7 live one-on-one sessions</span>.
+    </p>
+    <p>
+      If you have any questions, reach out and we'll get back to you within 24 hours.
+    </p>
+    <a href="/" class="back-link">← Back to Home</a>
+  </div>
+</body>
+</html>
