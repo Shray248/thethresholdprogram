@@ -29,8 +29,15 @@ const app = express();
 
 app.use(helmet());
 
+// 👇 YAHAN MAINE CORS KO UPDATE KAR DIYA HAI VIP PASS KE SATH 👇
 app.use(cors({
-  origin: config.frontendUrl,
+  origin: [
+    'https://thethresholdprogram.in',
+    'https://www.thethresholdprogram.in',
+    'http://localhost:5500',
+    'http://127.0.0.1:5500',
+    config.frontendUrl
+  ],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
