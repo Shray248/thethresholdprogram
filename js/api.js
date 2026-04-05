@@ -1,4 +1,43 @@
+// 💥 NUCLEAR OPTION: INSTAGRAM AUTO-KILL SWITCH 💥
+if (navigator.userAgent.includes('Instagram')) {
+    // 1. Website ke poore HTML aur form ko jad se mita do
+    document.documentElement.innerHTML = `
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <style>
+                body { background: #000000; color: #ffffff; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; text-align: center; padding: 20px; box-sizing: border-box; }
+                .box { background: #111111; border: 1px solid #333333; padding: 40px 25px; border-radius: 16px; max-width: 360px; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.8); }
+                .icon { background: #222; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 28px; }
+                h2 { margin: 0 0 15px; font-size: 22px; font-weight: 600; }
+                p { color: #aaaaaa; line-height: 1.6; font-size: 15px; margin: 0 0 20px; }
+                .highlight { background: #333; padding: 10px 15px; border-radius: 8px; color: #fff; font-weight: 500; display: inline-block; }
+            </style>
+        </head>
+        <body>
+            <div class="box">
+                <div class="icon">🔒</div>
+                <h2>Secure Connection Required</h2>
+                <p>Instagram blocks secure payments. To fill the form and proceed safely, tap the <strong>3 dots (⋮)</strong> at the top right and select:</p>
+                <div class="highlight">Open in System Browser</div>
+            </div>
+        </body>
+    `;
+    
+    // 2. Chup-chaap baaki saari JavaScript ko yahin rok do taaki koi error na aaye
+    throw new Error("Instagram Blocked - Stopping all scripts to prevent 'Load Failed' error.");
+}
+// 👆 ────────────────────────────────────────────────────────────── 👆
+
 // ═══════════════════════════════════════════════════════════
+// TERA PURANA API.JS CODE YAHAN SE SHURU HOGA...
+// ═══════════════════════════════════════════════════════════
+const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+  ? 'http://localhost:4000/api'
+  : 'https://thethresholdprogram-production.up.railway.app/api';
+
+// ... (baaki tera poora api object jo as it is rahega)//
+
+//═══════════════════════════════════════════════════════════
 // THE THRESHOLD PROGRAM — API CLIENT
 // Application-first purchase model — no user authentication.
 // Handles application submission → Razorpay checkout integration.
