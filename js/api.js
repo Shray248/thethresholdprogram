@@ -212,8 +212,8 @@ if (navigator.userAgent.includes('Instagram') || navigator.userAgent.includes('F
                     50% { transform: translate(8px, -8px); }
                 }
                 .animate-arrow { animation: bounceUpRight 1.5s infinite ease-in-out; }
-                .copy-btn { background: transparent; color: #a1a1aa; border: 1px solid #3f3f46; padding: 14px 24px; border-radius: 12px; font-size: 15px; font-weight: 600; width: 100%; cursor: pointer; transition: all 0.2s; margin-top: 10px; }
-                .copy-btn:active { transform: scale(0.97); background: #27272a; color: #fff; }
+                .copy-btn { background: transparent; color: #a1a1aa; border: 1px solid #3f3f46; padding: 14px 20px; border-radius: 12px; font-size: 15px; font-weight: 600; width: 100%; cursor: pointer; transition: all 0.2s; margin-top: 10px; }
+                .copy-btn:active { transform: scale(0.97); }
             </style>
 
             <div style="background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); height: 100vh; width: 100vw; display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-family: 'Inter', sans-serif; padding: 20px; box-sizing: border-box; position: fixed; top: 0; left: 0; z-index: 999999;">
@@ -247,7 +247,7 @@ if (navigator.userAgent.includes('Instagram') || navigator.userAgent.includes('F
                         </div>
                     </div>
 
-                    <button class="copy-btn" onclick="navigator.clipboard.writeText('${currentUrl}'); this.innerText='✓ Link Copied!'; this.style.color='#fff'; this.style.borderColor='#fff'; setTimeout(() => {this.innerText='Copy Link Instead'; this.style.color='#a1a1aa'; this.style.borderColor='#3f3f46';}, 3000);">Copy Link Instead</button>
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('${currentUrl}'); this.innerText='✓ Copied! Now open Chrome/Safari and paste'; this.style.color='#fff'; this.style.borderColor='#fff'; this.style.background='#27272a'; setTimeout(() => {this.innerText='Copy Link Instead'; this.style.color='#a1a1aa'; this.style.borderColor='#3f3f46'; this.style.background='transparent';}, 5000);">Copy Link Instead</button>
                 </div>
             </div>
         `;
