@@ -81,12 +81,31 @@ const api = {
      */
     async initiateCheckout(buyerInfo) {
       
-      // 👇 ─── SMART BROWSER CHECK (For IG/Brave/Ad-Blockers) ─── 👇
+      // 👇 ─── SMART BROWSER CHECK (PREMIUM UI) ─── 👇
       // Check if user is inside Instagram browser
       const isInstagram = navigator.userAgent.includes('Instagram');
       
       if (isInstagram) {
-          alert("⚠️ Instagram Browser Detected!\n\nInstagram blocks secure payments. Kripya upar right side me 3 dots (⋮) par click karein aur 'Open in Chrome/Safari/Browser' select karein taaki payment fail na ho.");
+          // Premium Custom Dark Mode Modal
+          const overlay = document.createElement('div');
+          overlay.id = 'premium-ig-warning';
+          overlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 99999; display: flex; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box;';
+
+          const modal = document.createElement('div');
+          modal.style.cssText = 'background: #111; border: 1px solid #333; border-radius: 16px; padding: 32px 24px; text-align: center; max-width: 360px; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.8); font-family: "Inter", sans-serif;';
+
+          modal.innerHTML = `
+              <div style="background: #222; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                  <span style="font-size: 24px;">🔒</span>
+              </div>
+              <h3 style="color: #fff; font-size: 20px; font-weight: 600; margin: 0 0 12px 0;">Secure Payment Required</h3>
+              <p style="color: #aaa; font-size: 15px; line-height: 1.5; margin: 0 0 24px 0;">Instagram limits secure transactions. Please tap the <strong>3 dots (⋮)</strong> at the top right and select <br><span style="color: #fff; font-weight: 500;">"Open in System Browser"</span> to safely complete your purchase.</p>
+              <button onclick="document.getElementById('premium-ig-warning').remove()" style="background: #fff; color: #000; border: none; padding: 14px 24px; border-radius: 8px; font-size: 15px; font-weight: 600; width: 100%; cursor: pointer;">Got it</button>
+          `;
+
+          overlay.appendChild(modal);
+          document.body.appendChild(overlay);
+
           return null; // Stop execution
       }
       // 👆 ─────────────────────────────────────────────────────── 👆
