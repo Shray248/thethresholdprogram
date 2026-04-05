@@ -31,7 +31,7 @@ const api = {
         headers,
       });
 
-      // 🚨 DEEP FIX: Check if Railway sent a real response or an HTML Error Page
+      // Check if Railway sent a real response or an HTML Error Page
       const contentType = response.headers.get("content-type");
       let data;
       if (contentType && contentType.includes("application/json")) {
@@ -47,9 +47,9 @@ const api = {
 
       return data;
     } catch (err) {
-      // 👇 YEH NAYI LINE ASLI ERROR SCREEN PAR DIKHAYEGI 👇
-      alert("🚨 REAL SYSTEM ERROR:\n\n" + err.message + "\n\nEndpoint: " + endpoint);
+      // 👇 LIE DETECTOR REMOVED - CLEAN CUSTOMER ERROR ADDED 👇
       console.error(`[API Error] ${endpoint}:`, err.message);
+      alert("⚠️ Connection Error. Please check your internet and try again.");
       throw err;
     }
   },
@@ -200,16 +200,54 @@ const api = {
   },
 };
 
-// 👇 ─── SAFE INSTAGRAM OVERRIDE (FILE KE END MEIN) ─── 👇
+// 👇 ─── SAFE INSTAGRAM OVERRIDE (PREMIUM UI/UX) ─── 👇
 if (navigator.userAgent.includes('Instagram') || navigator.userAgent.includes('FB')) {
     const showPremiumBlocker = () => {
+        const currentUrl = window.location.href;
+        
         document.body.innerHTML = `
-            <div style="background: #000; height: 100vh; width: 100vw; display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-family: 'Inter', sans-serif; padding: 20px; box-sizing: border-box; position: fixed; top: 0; left: 0; z-index: 999999;">
-                <div style="background: #111; padding: 40px 25px; border-radius: 16px; border: 1px solid #333; width: 100%; max-width: 360px; box-shadow: 0 20px 40px rgba(0,0,0,0.8);">
-                    <div style="background: #222; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 28px;">🔒</div>
-                    <h2 style="margin: 0 0 15px; font-size: 22px; font-weight: 600;">Secure Checkout</h2>
-                    <p style="color: #aaa; line-height: 1.6; font-size: 15px; margin: 0 0 20px;">Instagram browser blocks secure payments. To continue, tap the <strong>3 dots (⋮)</strong> at the top right and select:</p>
-                    <div style="background: #333; padding: 12px 15px; border-radius: 8px; color: #fff; font-weight: 500; display: inline-block;">Open in System Browser</div>
+            <style>
+                @keyframes bounceUpRight {
+                    0%, 100% { transform: translate(0, 0); }
+                    50% { transform: translate(8px, -8px); }
+                }
+                .animate-arrow { animation: bounceUpRight 1.5s infinite ease-in-out; }
+                .copy-btn { background: transparent; color: #a1a1aa; border: 1px solid #3f3f46; padding: 14px 24px; border-radius: 12px; font-size: 15px; font-weight: 600; width: 100%; cursor: pointer; transition: all 0.2s; margin-top: 10px; }
+                .copy-btn:active { transform: scale(0.97); background: #27272a; color: #fff; }
+            </style>
+
+            <div style="background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); height: 100vh; width: 100vw; display: flex; align-items: center; justify-content: center; text-align: center; color: white; font-family: 'Inter', sans-serif; padding: 20px; box-sizing: border-box; position: fixed; top: 0; left: 0; z-index: 999999;">
+                
+                <div class="animate-arrow" style="position: absolute; top: 40px; right: 25px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+                    <span style="font-weight: 600; font-size: 14px; color: #000; background: #fff; padding: 6px 12px; border-radius: 20px; box-shadow: 0 4px 12px rgba(255,255,255,0.2);">Tap the 3 dots</span>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate(-45deg);">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
+
+                <div style="background: #0a0a0a; padding: 32px 24px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.08); width: 100%; max-width: 360px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8);">
+                    
+                    <div style="background: linear-gradient(135deg, #27272a, #18181b); width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; border: 1px solid rgba(255,255,255,0.05); box-shadow: inset 0 2px 10px rgba(255,255,255,0.05);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    </div>
+                    
+                    <h2 style="margin: 0 0 8px; font-size: 22px; font-weight: 700; letter-spacing: -0.5px;">Action Required</h2>
+                    <p style="color: #a1a1aa; line-height: 1.5; font-size: 15px; margin: 0 0 28px;">Instagram limits secure payments. Follow these quick steps to continue safely.</p>
+
+                    <div style="background: #111; padding: 16px; border-radius: 16px; border: 1px solid #222; margin-bottom: 24px; display: flex; flex-direction: column; gap: 16px;">
+                        <div style="display: flex; align-items: center; gap: 14px; text-align: left;">
+                            <div style="background: #27272a; color: #fff; width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0;">1</div>
+                            <div style="font-size: 14px; color: #e4e4e7;">Tap the <strong>3 dots (⋮)</strong> top right</div>
+                        </div>
+                        <div style="height: 1px; background: #222; width: 100%;"></div>
+                        <div style="display: flex; align-items: center; gap: 14px; text-align: left;">
+                            <div style="background: #27272a; color: #fff; width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0;">2</div>
+                            <div style="font-size: 14px; color: #e4e4e7;">Select <strong>Open in System Browser</strong></div>
+                        </div>
+                    </div>
+
+                    <button class="copy-btn" onclick="navigator.clipboard.writeText('${currentUrl}'); this.innerText='✓ Link Copied!'; this.style.color='#fff'; this.style.borderColor='#fff'; setTimeout(() => {this.innerText='Copy Link Instead'; this.style.color='#a1a1aa'; this.style.borderColor='#3f3f46';}, 3000);">Copy Link Instead</button>
                 </div>
             </div>
         `;
