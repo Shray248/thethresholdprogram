@@ -80,18 +80,35 @@ const api = {
      * @param {Object} buyerInfo - { name, email, phone, instagram, currentSituation, investmentCapacity }
      */
     async initiateCheckout(buyerInfo) {
+      
+      // 👇 ─── SMART BROWSER CHECK (For IG/Brave/Ad-Blockers) ─── 👇
+      // Check if user is inside Instagram browser
+      const isInstagram = navigator.userAgent.includes('Instagram');
+      
+      if (isInstagram) {
+          alert("⚠️ Instagram Browser Detected!\n\nInstagram blocks secure payments. Kripya upar right side me 3 dots (⋮) par click karein aur 'Open in Chrome/Safari/Browser' select karein taaki payment fail na ho.");
+          return null; // Stop execution
+      }
+      // 👆 ─────────────────────────────────────────────────────── 👆
+
       // 1. Create the order on our backend with buyer info
       const orderData = await this.createOrder(buyerInfo);
 
       // 2. Load the Razorpay script if not already on the page
       if (!window.Razorpay) {
-        await new Promise((resolve, reject) => {
-          const script = document.createElement('script');
-          script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-          script.onload = resolve;
-          script.onerror = () => reject(new Error('Could not load payment gateway.'));
-          document.body.appendChild(script);
-        });
+        try {
+            await new Promise((resolve, reject) => {
+              const script = document.createElement('script');
+              script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+              script.onload = resolve;
+              script.onerror = () => reject(new Error('Could not load payment gateway.'));
+              document.body.appendChild(script);
+            });
+        } catch (error) {
+            // Agar ad-blocker ki wajah se script load fail ho jaye
+            alert("⚠️ Payment Script Blocked!\n\nLagta hai aap Brave browser ya Ad-blocker use kar rahe hain. Kripya normal Chrome/Safari mein try karein.");
+            return null;
+        }
       }
 
       // 3. Initialize Razorpay checkout with prefilled buyer info
