@@ -41,11 +41,18 @@ async function createOrder(req, res) {
       });
     }
 
-    const amount = config.pricing.programPriceInr;
+    // Fixed amount logic - Make sure it's valid and converted to PAISE for Razorpay
+    let rawAmount = config.pricing.programPriceInr;
+    if (!rawAmount || isNaN(rawAmount)) {
+        rawAmount = 5000; // Default fallback to 5000 INR if config fails
+    }
+    
+    // Razorpay needs amount in Paise
+    const amountInPaise = parseInt(rawAmount) * 100; 
 
     // ─── Create Razorpay Order ───────────────────────
     const options = {
-      amount: amount,
+      amount: amountInPaise, 
       currency: 'INR',
       receipt: `ttp_${Date.now()}`,
       notes: {
@@ -63,7 +70,7 @@ async function createOrder(req, res) {
     await prisma.order.create({
       data: {
         razorpayOrderId: order.id,
-        amount: amount,
+        amount: parseInt(rawAmount), // Save standard INR in DB
         currency: 'INR',
         status: 'PENDING',
         buyerName: name.trim(),
@@ -75,7 +82,7 @@ async function createOrder(req, res) {
       },
     });
 
-    console.log(`💳 Order created: ${order.id} — ${name} (${email}) — ₹${(amount / 100).toLocaleString()}`);
+    console.log(`💳 Order created: ${order.id} — ${name} (${email}) — ₹${rawAmount.toLocaleString()}`);
 
     return res.status(200).json({
       success: true,
