@@ -489,6 +489,421 @@
     }
 
     /* ══════════════════════════════════════════
+       NEW SECTIONS (Reality, Audience, Curriculum, Value, Investment, FAQ)
+       ══════════════════════════════════════════ */
+    .section-wrapper {
+      padding: 80px 24px 60px;
+    }
+    
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #71717a;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      font-size: clamp(32px, 6vw, 52px);
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 48px;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    
+    /* Reality Check */
+    .reality-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .reality-number {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 600;
+      font-size: clamp(40px, 8vw, 64px);
+      color: #ffffff;
+      margin-bottom: 8px;
+      line-height: 1;
+    }
+    .reality-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #a1a1aa;
+    }
+
+    /* Audience Qualification */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+    .audience-card {
+      background: #0d0d0d;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 40px;
+    }
+    .audience-card.dimmed {
+      background: rgba(13, 13, 13, 0.4);
+    }
+    .audience-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 32px;
+    }
+    .audience-card.dimmed .audience-label {
+      color: #71717a;
+    }
+    .audience-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .audience-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .audience-list-item svg {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      margin-top: 2px;
+      color: #ffffff;
+    }
+    .audience-card.dimmed .audience-list-item svg {
+      color: #71717a;
+    }
+    .audience-list-item span {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: #a1a1aa;
+      line-height: 1.6;
+    }
+
+    /* Curriculum Timeline */
+    .timeline-container {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      padding-top: 32px;
+    }
+    .timeline-line {
+      position: absolute;
+      left: 32px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent);
+    }
+    .timeline-item {
+      display: flex;
+      position: relative;
+      margin-bottom: 40px;
+    }
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+    .timeline-number {
+      width: 64px;
+      height: 64px;
+      flex-shrink: 0;
+      background: #000;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: #ffffff;
+      z-index: 2;
+    }
+    .timeline-content {
+      margin-left: 32px;
+      background: #0d0d0d;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 32px;
+      flex-grow: 1;
+    }
+    .timeline-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #71717a;
+      margin-bottom: 8px;
+    }
+    .timeline-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+    .timeline-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px;
+      color: #a1a1aa;
+      line-height: 1.6;
+    }
+
+    /* Value Anatomy */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .value-card {
+      background: #0d0d0d;
+      border-left: 4px solid rgba(255,255,255,0.06);
+      padding: 32px;
+    }
+    .value-card.highlight {
+      border-left-color: #ffffff;
+    }
+    .value-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+    .value-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #a1a1aa;
+      line-height: 1.6;
+    }
+
+    /* Investment Paradigm */
+    .investment-box {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #0d0d0d;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 60px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .investment-glow {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 300px;
+      background: rgba(255,255,255,0.05);
+      filter: blur(60px);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .investment-top-border {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #ffffff;
+    }
+    .investment-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #71717a;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 2;
+    }
+    .investment-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      font-size: clamp(32px, 5vw, 48px);
+      color: #ffffff;
+      margin-bottom: 48px;
+      line-height: 1.15;
+      position: relative;
+      z-index: 2;
+    }
+    .investment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 40px 0;
+      margin-bottom: 40px;
+      position: relative;
+      z-index: 2;
+    }
+    .investment-col {
+      text-align: center;
+    }
+    .investment-col:first-child {
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .investment-meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #a1a1aa;
+      margin-bottom: 12px;
+    }
+    .investment-amount {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      font-size: 40px;
+      color: #ffffff;
+    }
+    .investment-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: #a1a1aa;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* FAQ */
+    .faq-container {
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .faq-item {
+      background: #0d0d0d;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .faq-header {
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-question {
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: #ffffff;
+    }
+    .faq-icon {
+      font-size: 24px;
+      color: #71717a;
+      transition: transform 0.3s ease;
+    }
+    .faq-content {
+      max-height: 0;
+      transition: max-height 0.3s ease-out;
+      background: transparent;
+    }
+    .faq-inner {
+      padding: 0 32px 32px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      margin-top: -8px;
+      padding-top: 24px;
+    }
+    .faq-answer {
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px;
+      color: #a1a1aa;
+      line-height: 1.6;
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+      color: #ffffff;
+    }
+    
+    @media (min-width: 769px) {
+      .timeline-container {
+        padding-left: 0;
+      }
+      .timeline-line {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .timeline-item:nth-child(odd) {
+        flex-direction: row-reverse;
+      }
+      .timeline-number {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .timeline-item:nth-child(even) .timeline-content {
+        margin-left: 0;
+        margin-right: calc(50% + 48px);
+      }
+      .timeline-item:nth-child(odd) .timeline-content {
+        margin-left: calc(50% + 48px);
+        margin-right: 0;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .reality-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px 16px;
+      }
+      .audience-grid, .value-grid {
+        grid-template-columns: 1fr;
+      }
+      .investment-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .investment-col:first-child {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        padding-bottom: 40px;
+      }
+      .timeline-content {
+        padding: 24px;
+        margin-left: 20px;
+      }
+      .timeline-number {
+        width: 48px;
+        height: 48px;
+        font-size: 16px;
+      }
+      .timeline-line {
+        left: 24px;
+      }
+    }
+
+    /* ══════════════════════════════════════════
        CUSTOM SCROLLBAR
        ══════════════════════════════════════════ */
     ::-webkit-scrollbar {
@@ -577,7 +992,7 @@
   </div>
 
   <!-- Price -->
-  <p class="price-text">₹3,500 per session · <strong>₹24,500</strong> for 7 days</p>
+
 
   <!-- CTA Button -->
   <a href="/apply.html" class="cta-button" id="hero-cta">
@@ -589,6 +1004,187 @@
   <p class="urgency-text">Limited spots available. Application closing soon.</p>
 </section>
 
+<!-- ═══════════════════════════════════════════
+     REALITY CHECK
+     ═══════════════════════════════════════════ -->
+<section class="section-wrapper" style="padding-top: 40px;">
+  <div class="reality-grid">
+    <div class="reveal">
+      <h3 class="reality-number">7</h3>
+      <p class="reality-text">Intense Sessions</p>
+    </div>
+    <div class="reveal" style="transition-delay: 100ms;">
+      <h3 class="reality-number">1</h3>
+      <p class="reality-text">Singular Focus</p>
+    </div>
+    <div class="reveal" style="transition-delay: 200ms;">
+      <h3 class="reality-number">Shift</h3>
+      <p class="reality-text">Irreversible Baseline</p>
+    </div>
+    <div class="reveal" style="transition-delay: 300ms;">
+      <h3 class="reality-number">High</h3>
+      <p class="reality-text">Cost of Indecision</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     CURRICULUM TIMELINE
+     ═══════════════════════════════════════════ -->
+<section class="section-wrapper" id="curriculum">
+  <p class="section-label reveal">THE ARCHITECTURE</p>
+  <h2 class="section-title reveal">7 Days. Zero Friction.<br/>One Irreversible ROI.</h2>
+  
+  <div class="timeline-container">
+    <div class="timeline-line reveal"></div>
+    
+    <!-- Day 1 -->
+    <div class="timeline-item reveal">
+      <div class="timeline-number">01</div>
+      <div class="timeline-content">
+        <p class="timeline-meta">Session 1</p>
+        <h3 class="timeline-title">The Subconscious Audit</h3>
+        <p class="timeline-desc">We go below the surface to dismantle the exact psychological scripts that have capped your performance for years. Recursive surgery on your internal architecture to break the cycle of self-sabotage.</p>
+      </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="timeline-item reveal">
+      <div class="timeline-number">02</div>
+      <div class="timeline-content">
+        <p class="timeline-meta">Session 2</p>
+        <h3 class="timeline-title">The Default State Autopsy</h3>
+        <p class="timeline-desc">Forensic analysis of your habits, triggers, and environments. We identify where your momentum is being quietly bled out and install the cognitive tools to permanently break stagnant patterns.</p>
+      </div>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="timeline-item reveal">
+      <div class="timeline-number">03</div>
+      <div class="timeline-content">
+        <p class="timeline-meta">Session 3</p>
+        <h3 class="timeline-title">Media & Distribution Mastery</h3>
+        <p class="timeline-desc">In the digital age, content is the ultimate leadership engine. We design your personalized distribution framework, leveraging content creation to build authority, trust, and influence at scale.</p>
+      </div>
+    </div>
+
+    <!-- Day 4 -->
+    <div class="timeline-item reveal">
+      <div class="timeline-number">04</div>
+      <div class="timeline-content">
+        <p class="timeline-meta">Session 4</p>
+        <h3 class="timeline-title">Global Arbitrage & Trade</h3>
+        <p class="timeline-desc">Moving beyond local boundaries. I reveal how top percentile players exploit international trade and global arbitrage to create asymmetrical leverage and access high-ticket foreign markets.</p>
+      </div>
+    </div>
+
+    <!-- Day 5 -->
+    <div class="timeline-item reveal">
+      <div class="timeline-number">05</div>
+      <div class="timeline-content">
+        <p class="timeline-meta">Session 5</p>
+        <h3 class="timeline-title">The Attention Fortress</h3>
+        <p class="timeline-desc">In an era of distraction, focus is a competitive advantage. I give you the exact frameworks to command 4+ hours of deep, needle-moving work on demand, turning your attention into an unbreakable asset.</p>
+      </div>
+    </div>
+
+    <!-- Day 6 -->
+    <div class="timeline-item reveal">
+      <div class="timeline-number">06</div>
+      <div class="timeline-content">
+        <p class="timeline-meta">Session 6</p>
+        <h3 class="timeline-title">Elite Social Architecture</h3>
+        <p class="timeline-desc">Ruthless audit of your professional boundaries. Building a protective architecture designed to attract a high-leverage network while maximizing your network's exposure to world-class opportunities.</p>
+      </div>
+    </div>
+
+    <!-- Day 7 -->
+    <div class="timeline-item reveal">
+      <div class="timeline-number">07</div>
+      <div class="timeline-content">
+        <p class="timeline-meta">Session 7</p>
+        <h3 class="timeline-title">The Integration Firewall</h3>
+        <p class="timeline-desc">Securing the perimeter of your new identity. Locking in the mindset and systems required for perpetual success, ensuring your threshold is permanently crossed and your regression paths are sealed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     VALUE ANATOMY
+     ═══════════════════════════════════════════ -->
+<section class="section-wrapper" id="outcomes">
+  <p class="section-label reveal">OUTCOME</p>
+  <h2 class="section-title reveal" style="max-width: 800px; margin-left: auto; margin-right: auto;">What you possess at the finish line.</h2>
+
+  <div class="value-grid">
+    <div class="value-card highlight reveal">
+      <h4 class="value-title">The New OS</h4>
+      <p class="value-desc">An irreversibly rewired identity operating system.</p>
+    </div>
+    <div class="value-card reveal" style="transition-delay: 100ms;">
+      <h4 class="value-title">Automated Protocol</h4>
+      <p class="value-desc">A personalized daily protocol running entirely on autopilot.</p>
+    </div>
+    <div class="value-card reveal" style="transition-delay: 200ms;">
+      <h4 class="value-title">Absolute Clarity</h4>
+      <p class="value-desc">Absolute clarity on your 90-day, 1-year, and 5-year trajectory.</p>
+    </div>
+    <div class="value-card reveal">
+      <h4 class="value-title">Elite Logic</h4>
+      <p class="value-desc">Decision frameworks used exclusively by top percentile performers.</p>
+    </div>
+    <div class="value-card reveal" style="transition-delay: 100ms;">
+      <h4 class="value-title">Commanded Focus</h4>
+      <p class="value-desc">The ability to enter a flow state and command deep focus on demand.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     AUDIENCE QUALIFICATION
+     ═══════════════════════════════════════════ -->
+<section class="section-wrapper" id="audience">
+  <div class="audience-grid">
+    <!-- For You -->
+    <div class="audience-card reveal">
+      <h4 class="audience-label">This is for you if:</h4>
+      <ul class="audience-list">
+        <li class="audience-list-item">
+          <svg viewBox="0 0 24 24" fill="none" class="shrink-0" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>You know you are operating at a fraction of your capacity.</span>
+        </li>
+        <li class="audience-list-item">
+          <svg viewBox="0 0 24 24" fill="none" class="shrink-0" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>You want a system, not motivation.</span>
+        </li>
+        <li class="audience-list-item">
+          <svg viewBox="0 0 24 24" fill="none" class="shrink-0" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          <span>You are willing to perform 7 days of deep, focused work.</span>
+        </li>
+      </ul>
+    </div>
+    
+    <!-- NOT For You -->
+    <div class="audience-card dimmed reveal" style="transition-delay: 100ms;">
+      <h4 class="audience-label">This is NOT for you if:</h4>
+      <ul class="audience-list">
+        <li class="audience-list-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>You want a magic pill with zero effort.</span>
+        </li>
+        <li class="audience-list-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>You are looking for entertainment.</span>
+        </li>
+        <li class="audience-list-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          <span>You are not willing to question your current identity.</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
 
 <!-- ═══════════════════════════════════════════
      TESTIMONIALS SECTION
@@ -612,7 +1208,7 @@
     <!-- Testimonial 2 -->
     <div class="testimonial-card reveal">
       <p class="testimonial-quote">
-        "I was hesitant about spending ₹28,000 on 7 sessions. By day 3, I knew this was the best investment I'd ever made in myself. The clarity is unreal."
+        "I was hesitant about spending ₹24,500 on 7 sessions. By day 3, I knew this was the best investment I'd ever made in myself. The clarity is unreal."
       </p>
       <div class="testimonial-stars">
         <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
@@ -644,6 +1240,53 @@
   </div>
 </section>
 
+
+
+<!-- ═══════════════════════════════════════════
+     FAQ SECTION
+     ═══════════════════════════════════════════ -->
+<section class="section-wrapper" id="faq">
+  <p class="section-label reveal">CLARIFICATION</p>
+  <h2 class="section-title reveal">Everything else.</h2>
+
+  <div class="faq-container">
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-header">
+        <h3 class="faq-question">Is this another motivational course?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-content">
+        <div class="faq-inner">
+          <p class="faq-answer">No. Zero fluff. We only deal in actionable frameworks and architectural system upgrades.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-header">
+        <h3 class="faq-question">What if I have tried everything already?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-content">
+        <div class="faq-inner">
+          <p class="faq-answer">That is exactly who this is for. Information isn't your barrier; your internal architecture is. We dismantle and rebuild it.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item reveal" onclick="toggleFaq(this)">
+      <div class="faq-header">
+        <h3 class="faq-question">How much time per day does this take?</h3>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-content">
+        <div class="faq-inner">
+          <p class="faq-answer">Expect to spend 60-90 minutes per session of deep, focused, uninterrupted work. No multitasking.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ═══════════════════════════════════════════
      BOTTOM CTA
@@ -690,6 +1333,23 @@
   });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── FAQ Accordion ────────────────────────────
+  function toggleFaq(element) {
+    const isActive = element.classList.contains('active');
+    
+    // Close all open FAQs
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.classList.remove('active');
+      item.querySelector('.faq-content').style.maxHeight = null;
+    });
+
+    if (!isActive) {
+      element.classList.add('active');
+      const content = element.querySelector('.faq-content');
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  }
 </script>
 
 </body>

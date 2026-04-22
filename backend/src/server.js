@@ -23,19 +23,19 @@ const { handleWebhook } = require('./controllers/paymentController');
 
 const app = express();
 
-// 👇 RAILWAY KE LIYE PROXY TRUST ENABLE KIYA (Rate limiter errors theek karne ke liye) 👇
-app.set('trust proxy', true);
-
 // ═══════════════════════════════════════════════════════════
 // SECURITY MIDDLEWARE
 // ═══════════════════════════════════════════════════════════
 
 app.use(helmet());
 
-// 👇 ─── THE ULTIMATE CORS FIX (SABSE UPAR RAKHNA HAI) ─── 👇
-app.use(cors());             // Har website se traffic allow karega
-app.options('*', cors());    // Apple/Safari ke preflight check ko hamesha PASS karega
-// 👆 ────────────────────────────────────────────────────── 👆
+app.use(cors({
+  origin: config.frontendUrl,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  maxAge: 86400,
+}));
 
 app.use(requestLogger);
 
@@ -64,7 +64,7 @@ app.use(express.urlencoded({ extended: true }));
 // Global rate limit — 100 requests per 15 minutes per IP
 const globalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 500,
+  max: 100,
   standardHeaders: true,
   legacyHeaders: false,
   message: {
@@ -76,7 +76,7 @@ const globalLimiter = rateLimit({
 // Payment rate limit — 10 checkout sessions per 15 minutes
 const paymentLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 100,
+  max: 10,
   standardHeaders: true,
   legacyHeaders: false,
   message: {

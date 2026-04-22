@@ -46,7 +46,7 @@ const config = {
   // ─── Program Pricing (in paise) ────────────────────────
   // ₹4,000/session × 7 sessions = ₹28,000 = 2,800,000 paise
   pricing: {
-    programPriceInr: parseInt(process.env.PROGRAM_PRICE_INR, 10) || 2800000,
+    programPriceInr: parseInt(process.env.PROGRAM_PRICE_INR, 10) || 2450000,
   },
 };
 
