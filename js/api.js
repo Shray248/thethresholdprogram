@@ -6,7 +6,7 @@
 
 const API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
   ? 'http://localhost:4000/api'
-  : 'https://api.' + window.location.hostname.replace('www.', '') + '/api';
+  : 'https://thethresholdprogram-production.up.railway.app/api';
 
 const api = {
   /**
