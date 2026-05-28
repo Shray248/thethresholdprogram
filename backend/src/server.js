@@ -163,69 +163,72 @@ app.use('/api/*', (req, res) => {
 app.use(errorHandler);
 
 // ═══════════════════════════════════════════════════════════
-// START SERVER + GRACEFUL SHUTDOWN
+// START SERVER + GRACEFUL SHUTDOWN (Only if not Serverless)
 // ═══════════════════════════════════════════════════════════
-const server = app.listen(config.port, () => {
-  console.log(`
-  ╔═══════════════════════════════════════════════════╗
-  ║                                                   ║
-  ║     THE THRESHOLD PROGRAM — API SERVER            ║
-  ║     Direct Purchase Model                         ║
-  ║                                                   ║
-  ║     Environment:  ${config.env.padEnd(30)}║
-  ║     Port:         ${String(config.port).padEnd(30)}║
-  ║     Frontend:     ${config.frontendUrl.padEnd(30)}║
-  ║                                                   ║
-  ║     Routes:                                       ║
-  ║       POST /api/payments/create-order             ║
-  ║       POST /api/payments/verify                   ║
-  ║       POST /api/payments/webhook                  ║
-  ║       POST /api/auth/admin-login                  ║
-  ║       GET  /api/auth/me                           ║
-  ║       GET  /api/admin/stats                       ║
-  ║       GET  /api/admin/orders                      ║
-  ║       GET  /api/admin/orders/:id                  ║
-  ║       PATCH /api/admin/orders/:id/status          ║
-  ║       GET  /api/health                            ║
-  ║                                                   ║
-  ╚═══════════════════════════════════════════════════╝
-  `);
-});
-
-// ─── Graceful Shutdown ───────────────────────────────────
-function gracefulShutdown(signal) {
-  console.log(`\n🛑 ${signal} received. Starting graceful shutdown...`);
-
-  server.close(async () => {
-    console.log('   ✓ HTTP server closed (no new connections)');
-
-    try {
-      await prisma.$disconnect();
-      console.log('   ✓ Database connection closed');
-    } catch (err) {
-      console.error('   ✗ Error disconnecting from database:', err);
-    }
-
-    console.log('   ✓ Shutdown complete. Goodbye.\n');
-    process.exit(0);
+if (!process.env.VERCEL) {
+  const server = app.listen(config.port, () => {
+    console.log(`
+    ╔═══════════════════════════════════════════════════╗
+    ║                                                   ║
+    ║     THE THRESHOLD PROGRAM — API SERVER            ║
+    ║     Direct Purchase Model                         ║
+    ║                                                   ║
+    ║     Environment:  ${config.env.padEnd(30)}║
+    ║     Port:         ${String(config.port).padEnd(30)}║
+    ║     Frontend:     ${config.frontendUrl.padEnd(30)}║
+    ║                                                   ║
+    ║     Routes:                                       ║
+    ║       POST /api/payments/create-order             ║
+    ║       POST /api/payments/verify                   ║
+    ║       POST /api/payments/webhook                  ║
+    ║       POST /api/auth/admin-login                  ║
+    ║       GET  /api/auth/me                           ║
+    ║       GET  /api/admin/stats                       ║
+    ║       GET  /api/admin/orders                      ║
+    ║       GET  /api/admin/orders/:id                  ║
+    ║       PATCH /api/admin/orders/:id/status          ║
+    ║       GET  /api/health                            ║
+    ║                                                   ║
+    ╚═══════════════════════════════════════════════════╝
+    `);
   });
 
-  setTimeout(() => {
-    console.error('   ✗ Forced shutdown after 30s timeout');
-    process.exit(1);
-  }, 30000);
+  // ─── Graceful Shutdown ───────────────────────────────────
+  function gracefulShutdown(signal) {
+    console.log(`\n🛑 ${signal} received. Starting graceful shutdown...`);
+
+    server.close(async () => {
+      console.log('   ✓ HTTP server closed (no new connections)');
+
+      try {
+        await prisma.$disconnect();
+        console.log('   ✓ Database connection closed');
+      } catch (err) {
+        console.error('   ✗ Error disconnecting from database:', err);
+      }
+
+      console.log('   ✓ Shutdown complete. Goodbye.\n');
+      process.exit(0);
+    });
+
+    setTimeout(() => {
+      console.error('   ✗ Forced shutdown after 30s timeout');
+      process.exit(1);
+    }, 30000);
+  }
+
+  process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
+  process.on('SIGINT', () => gracefulShutdown('SIGINT'));
+
+  process.on('unhandledRejection', (reason, promise) => {
+    console.error('⚠️  Unhandled Promise Rejection:', reason);
+  });
+
+  process.on('uncaughtException', (error) => {
+    console.error('💀 Uncaught Exception:', error);
+    gracefulShutdown('UNCAUGHT_EXCEPTION');
+  });
 }
 
-process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
-process.on('SIGINT', () => gracefulShutdown('SIGINT'));
-
-process.on('unhandledRejection', (reason, promise) => {
-  console.error('⚠️  Unhandled Promise Rejection:', reason);
-});
-
-process.on('uncaughtException', (error) => {
-  console.error('💀 Uncaught Exception:', error);
-  gracefulShutdown('UNCAUGHT_EXCEPTION');
-});
-
+// Export the app for Vercel Serverless Functions
 module.exports = app;

@@ -4,13 +4,14 @@
   "description": "Backend API for The Threshold Program — premium digital transformation course",
   "main": "src/server.js",
   "scripts": {
-    "build": "npx prisma generate",
+    "postinstall": "prisma generate",
+    "build": "prisma generate",
     "dev": "nodemon src/server.js",
-    "start": "npx prisma db push && node src/server.js",
-    "db:generate": "npx prisma generate",
-    "db:push": "npx prisma db push",
-    "db:migrate": "npx prisma migrate dev",
-    "db:studio": "npx prisma studio",
+    "start": "node src/server.js",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio",
     "db:seed": "node prisma/seed.js"
   },
   "dependencies": {

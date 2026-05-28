@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "npx serve . -p 3000"
+  },
+  "dependencies": {
+    "puppeteer": "^25.1.0"
   }
 }

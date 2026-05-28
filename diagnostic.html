@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Invisible Limit Diagnostic</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: rgba(255,255,255,0.15); color: #fff; }
+
+    /* ═══════ HEADER ═══════ */
+    .d-header {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      padding: 32px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .d-logo svg { width: 32px; height: 38px; }
+    
+    .d-progress {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #52525b;
+      letter-spacing: 0.1em;
+    }
+
+    /* ═══════ QUIZ CONTAINER ═══════ */
+    .q-container {
+      max-width: 680px;
+      width: 100%;
+      position: relative;
+    }
+
+    .q-step {
+      display: none;
+      animation: slideIn 0.5s ease forwards;
+    }
+
+    .q-step.active {
+      display: block;
+    }
+
+    .q-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #71717a;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .q-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 40px;
+      letter-spacing: -0.02em;
+    }
+
+    .q-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .q-opt {
+      background: #0a0a0a;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 24px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .q-opt:hover {
+      background: #111;
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    .q-opt-char {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      color: #a1a1aa;
+      flex-shrink: 0;
+    }
+
+    .q-opt-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: #d4d4d8;
+      line-height: 1.5;
+    }
+
+    /* ═══════ LOADER ═══════ */
+    .loader {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .loader.active {
+      display: flex;
+    }
+
+    .l-spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid rgba(255,255,255,0.1);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 24px;
+    }
+
+    .l-text {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: #fff;
+    }
+    
+    .l-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #71717a;
+      margin-top: 8px;
+    }
+
+    /* ═══════ RESULT ═══════ */
+    .result-container {
+      display: none;
+      max-width: 720px;
+      width: 100%;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .result-container.active {
+      display: block;
+    }
+
+    .r-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #71717a;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .r-title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 900;
+      font-size: clamp(36px, 6vw, 56px);
+      color: #fff;
+      text-align: center;
+      margin-bottom: 40px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .r-card {
+      background: #0a0a0a;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    .r-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    }
+
+    .r-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: #d4d4d8;
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    .r-cost {
+      background: #000;
+      border-left: 3px solid #fff;
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 32px;
+    }
+
+    .r-cost-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #71717a;
+      margin-bottom: 4px;
+    }
+
+    .r-cost-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: #fff;
+    }
+
+    .r-cta {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: #fff;
+      color: #000;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      padding: 20px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .r-cta:hover {
+      background: #e4e4e7;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(255,255,255,0.15);
+    }
+
+    /* ═══════ ANIMATIONS ═══════ */
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="d-header">
+    <div class="d-logo">
+      <svg viewBox="0 0 72 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M36 8 C34 28, 38 44, 36 80" stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+        <path d="M12 32 C20 28, 52 28, 60 32" stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+        <path d="M28 80 C32 78, 40 78, 44 80" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="d-progress" id="progress">01 / 05</div>
+  </header>
+
+  <main class="q-container" id="quiz">
+    
+    <!-- QUESTION 1 -->
+    <div class="q-step active" data-step="1">
+      <span class="q-label">Diagnostic 01</span>
+      <h2 class="q-title">When you experience a massive win or breakthrough, what usually happens next?</h2>
+      <div class="q-options">
+        <div class="q-opt" onclick="nextStep('competence')">
+          <div class="q-opt-char">A</div>
+          <div class="q-opt-text">I immediately get back to work. I downplay it because there's always more to do.</div>
+        </div>
+        <div class="q-opt" onclick="nextStep('identity')">
+          <div class="q-opt-char">B</div>
+          <div class="q-opt-text">A self-inflicted crisis. I suddenly get sick, pick a fight, or create a problem out of nowhere.</div>
+        </div>
+        <div class="q-opt" onclick="nextStep('comfort')">
+          <div class="q-opt-char">C</div>
+          <div class="q-opt-text">I coast. I relax for way too long until things get urgent again.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUESTION 2 -->
+    <div class="q-step" data-step="2">
+      <span class="q-label">Diagnostic 02</span>
+      <h2 class="q-title">Be completely honest. What is your relationship with learning (books, podcasts, courses)?</h2>
+      <div class="q-options">
+        <div class="q-opt" onclick="nextStep('knowledge')">
+          <div class="q-opt-char">A</div>
+          <div class="q-opt-text">I consume constantly. But deep down, I know I'm using learning as a substitute for actually doing the work.</div>
+        </div>
+        <div class="q-opt" onclick="nextStep('competence')">
+          <div class="q-opt-char">B</div>
+          <div class="q-opt-text">I use it strictly for utility. If I don't know how to do something, I figure it out instantly.</div>
+        </div>
+        <div class="q-opt" onclick="nextStep('agreement')">
+          <div class="q-opt-char">C</div>
+          <div class="q-opt-text">I read a lot about mindset and potential, but I'm afraid of what people will think if I actually change.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUESTION 3 -->
+    <div class="q-step" data-step="3">
+      <span class="q-label">Diagnostic 03</span>
+      <h2 class="q-title">If you woke up tomorrow and had everything you ever wanted, who in your life would be the most uncomfortable?</h2>
+      <div class="q-options">
+        <div class="q-opt" onclick="nextStep('identity')">
+          <div class="q-opt-char">A</div>
+          <div class="q-opt-text">Myself. It wouldn't feel like "me." I'm used to the struggle.</div>
+        </div>
+        <div class="q-opt" onclick="nextStep('agreement')">
+          <div class="q-opt-char">B</div>
+          <div class="q-opt-text">My family, partner, or close friends. I subconsciously hold back so I don't outshine them.</div>
+        </div>
+        <div class="q-opt" onclick="nextStep('comfort')">
+          <div class="q-opt-char">C</div>
+          <div class="q-opt-text">No one. I just haven't pushed myself hard enough to get there. I like my comfort.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUESTION 4 -->
+    <div class="q-step" data-step="4">
+      <span class="q-label">Diagnostic 04</span>
+      <h2 class="q-title">How do you currently measure your success?</h2>
+      <div class="q-options">
+        <div class="q-opt" onclick="nextStep('competence')">
+          <div class="q-opt-char">A</div>
+          <div class="q-opt-text">By how capable and functional I am. People rely on me, and I pride myself on being the one who "handles it."</div>
+        </div>
+        <div class="q-opt" onclick="nextStep('knowledge')">
+          <div class="q-opt-char">B</div>
+          <div class="q-opt-text">By how much I know. I am usually the smartest person in the room, even if my results don't show it.</div>
+        </div>
+        <div class="q-opt" onclick="nextStep('comfort')">
+          <div class="q-opt-char">C</div>
+          <div class="q-opt-text">By stability. As long as there are no immediate threats or huge risks, I consider it a win.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUESTION 5 -->
+    <div class="q-step" data-step="5">
+      <span class="q-label">Diagnostic 05</span>
+      <h2 class="q-title">If a camera crew followed you 24/7, what would be the most obvious lie you tell yourself?</h2>
+      <div class="q-options">
+        <div class="q-opt" onclick="nextStep('knowledge')">
+          <div class="q-opt-char">A</div>
+          <div class="q-opt-text">"I just need one more framework, course, or strategy before I'm ready."</div>
+        </div>
+        <div class="q-opt" onclick="nextStep('identity')">
+          <div class="q-opt-char">B</div>
+          <div class="q-opt-text">"I have bad luck. Things just always seem to go wrong right when they're getting good."</div>
+        </div>
+        <div class="q-opt" onclick="nextStep('agreement')">
+          <div class="q-opt-char">C</div>
+          <div class="q-opt-text">"I'm doing this for them." (When really, I'm just hiding behind them).</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="loader" id="loader">
+    <div class="l-spinner"></div>
+    <div class="l-text">Analyzing your psychological architecture...</div>
+    <div class="l-sub">Identifying your dominant invisible limit.</div>
+  </div>
+
+  <div class="result-container" id="result">
+    <p class="r-label">YOUR DIAGNOSIS</p>
+    <h2 class="r-title" id="r-title">The Limit</h2>
+    
+    <div class="r-card">
+      <p class="r-desc" id="r-desc">Description goes here.</p>
+      
+      <div class="r-cost">
+        <p class="r-cost-title">The Hidden Cost</p>
+        <p class="r-cost-text" id="r-cost-text">Cost goes here.</p>
+      </div>
+
+      <p class="r-desc" style="margin-bottom: 0;"><strong>The Truth:</strong> Awareness alone changes nothing. You now know exactly what is capping your potential, but until the underlying architecture is dismantled, you will continue to repeat the pattern.</p>
+    </div>
+
+    <a href="/#session" class="r-cta">Dismantle This Limit →</a>
+  </div>
+
+  <script>
+    const limitsData = {
+      'competence': {
+        title: 'The Competence Trap',
+        desc: 'You have gotten so good at surviving and managing your current level that growth feels unnecessary. Your high competence has become the very ceiling that prevents your ascent. You mistake being highly functional for being fulfilled.',
+        cost: 'You spend your entire life operating at 40% capacity, receiving applause from people who have no idea what you are actually capable of.'
+      },
+      'identity': {
+        title: 'The Identity Ceiling',
+        desc: 'You have a deeply ingrained story of "who you are" and "what you deserve." Whenever you exceed this invisible set point, you unconsciously sabotage yourself to return to the baseline level you feel comfortable with.',
+        cost: 'Every massive leap forward is immediately followed by a self-inflicted crisis. You are trapped in a loop of creation and destruction.'
+      },
+      'comfort': {
+        title: 'The Comfort Disguise',
+        desc: 'You have built a life that looks like progress but feels like a holding pattern. You mistake emotional safety for actual growth. Your comfort zone expanded just enough to be tolerable, but not enough to make you feel alive.',
+        cost: 'You are slowly fading into a life of profound mediocrity, masked entirely by luxury, stability, or "being busy."'
+      },
+      'knowledge': {
+        title: 'The Knowledge Illusion',
+        desc: 'You consume books, podcasts, and courses as a substitute for transformation. Learning has become your most sophisticated and deceptive form of procrastination. You know exactly what to do—you just don\'t do it.',
+        cost: 'You become the smartest person in the room who still hasn\'t moved the needle in three years.'
+      },
+      'agreement': {
+        title: 'The Invisible Agreement',
+        desc: 'Somewhere along the way, you silently agreed to play small. To not outshine someone you love. To not make others uncomfortable with your intense ambition. The contract was never spoken, but you honor it daily.',
+        cost: 'You dim your own light so others don\'t have to squint, slowly losing your own identity in the process.'
+      }
+    };
+
+    let currentStep = 1;
+    let scores = { competence: 0, identity: 0, comfort: 0, knowledge: 0, agreement: 0 };
+
+    function nextStep(selectedLimit) {
+      scores[selectedLimit]++;
+      
+      const currentEl = document.querySelector(`.q-step[data-step="${currentStep}"]`);
+      currentEl.classList.remove('active');
+      
+      currentStep++;
+      
+      if (currentStep <= 5) {
+        document.getElementById('progress').innerText = `0${currentStep} / 05`;
+        const nextEl = document.querySelector(`.q-step[data-step="${currentStep}"]`);
+        nextEl.classList.add('active');
+      } else {
+        document.getElementById('progress').style.display = 'none';
+        document.getElementById('quiz').style.display = 'none';
+        showLoader();
+      }
+    }
+
+    function showLoader() {
+      const loader = document.getElementById('loader');
+      loader.classList.add('active');
+      
+      // Simulate calculation
+      setTimeout(() => {
+        loader.classList.remove('active');
+        showResult();
+      }, 2500);
+    }
+
+    function showResult() {
+      // Find highest score
+      let maxScore = -1;
+      let dominant = 'competence';
+      
+      for (const [limit, score] of Object.entries(scores)) {
+        if (score > maxScore) {
+          maxScore = score;
+          dominant = limit;
+        }
+      }
+
+      const data = limitsData[dominant];
+      
+      document.getElementById('r-title').innerText = data.title;
+      document.getElementById('r-desc').innerText = data.desc;
+      document.getElementById('r-cost-text').innerText = data.cost;
+      
+      document.getElementById('result').classList.add('active');
+    }
+  </script>
+
+</body>
+</html>

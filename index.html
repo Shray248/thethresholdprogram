@@ -3,35 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Threshold Program — 7 Days to Cross Your Threshold</title>
-  <meta name="description" content="The Threshold Program is a 7-day, 7 live one-on-one session intensive where we clarify, solve, and provide inbuilt resources to help you cross your threshold phase." />
-  <meta property="og:title" content="The Threshold Program — 7 Days to Cross Your Threshold" />
-  <meta property="og:description" content="7 live 1-on-1 sessions. 7 days. Cross the threshold that's been holding you back." />
-  <meta property="og:type" content="website" />
+  <title>The Threshold Program — Escape Self-Created Limits</title>
+  <meta name="description" content="I help ambitious minds escape self-created limits. Download the free framework to discover the 5 invisible patterns silently capping your potential." />
 
-  <!-- Google Fonts: Archivo + Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
-    /* ══════════════════════════════════════════
-       RESET & BASE
-       ══════════════════════════════════════════ */
-    *, *::before, *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      font-size: 16px;
-      scroll-behavior: smooth;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 16px; scroll-behavior: smooth; }
 
     body {
-      background: #000000;
-      color: #ffffff;
+      background: #000;
+      color: #fff;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -39,1317 +24,730 @@
       line-height: 1.6;
     }
 
-    ::selection {
-      background: rgba(255, 255, 255, 0.2);
-      color: #fff;
-    }
+    ::selection { background: rgba(255,255,255,0.15); color: #fff; }
 
-    /* ══════════════════════════════════════════
-       TYPOGRAPHY
-       ══════════════════════════════════════════ */
-    .font-archivo {
-      font-family: 'Archivo', sans-serif;
-    }
-
-    .font-inter {
+    /* ═══════ COMMON ═══════ */
+    .section-label {
       font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #fff; /* Changed from grey to white per user request */
+      text-align: center;
+      margin-bottom: 16px;
     }
 
-    /* ══════════════════════════════════════════
-       LAYOUT
-       ══════════════════════════════════════════ */
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 24px;
+    .section-heading {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 5vw, 44px);
+      text-align: center;
+      color: #fff;
+      margin-bottom: 48px;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
     }
 
-    /* ══════════════════════════════════════════
-       HERO SECTION
-       ══════════════════════════════════════════ */
+    /* ═══════ HERO ═══════ */
     .hero {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 60px 24px 48px;
-      min-height: auto;
+      padding: 100px 24px 80px;
+      min-height: 100vh;
+      justify-content: center;
+      position: relative;
     }
-
-    .hero-logo {
-      margin-bottom: 40px;
-      opacity: 0;
-      animation: fadeIn 1s ease-out 0.2s forwards;
+    .hero-glow {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.018) 0%, transparent 70%);
+      pointer-events: none;
     }
-
-    .hero-logo svg {
-      width: 52px;
-      height: 52px;
-    }
-
+    .hero-logo { margin-bottom: 56px; opacity: 0; animation: fadeIn 1s ease-out 0.2s forwards; position: relative; z-index: 2; }
+    .hero-logo svg { width: 48px; height: 58px; }
     .hero-title {
       font-family: 'Archivo', sans-serif;
-      font-weight: 700;
-      font-size: clamp(28px, 6vw, 52px);
-      line-height: 1.15;
-      color: #ffffff;
-      max-width: 680px;
+      font-weight: 800;
+      font-size: clamp(32px, 5.5vw, 52px);
+      line-height: 1.12;
+      color: #fff;
+      max-width: 600px;
       margin-bottom: 20px;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
       opacity: 0;
-      animation: fadeIn 1s ease-out 0.4s forwards;
+      animation: fadeIn 1s ease-out 0.35s forwards;
+      position: relative; z-index: 2;
     }
-
-    .hero-subtitle {
+    .hero-sub {
       font-family: 'Inter', sans-serif;
       font-size: 15px;
       font-weight: 400;
-      color: #a1a1aa;
-      max-width: 460px;
-      line-height: 1.65;
-      margin-bottom: 40px;
-      opacity: 0;
-      animation: fadeIn 1s ease-out 0.6s forwards;
-    }
-
-    /* ══════════════════════════════════════════
-       PROGRAM DESCRIPTION BOX
-       ══════════════════════════════════════════ */
-    .program-box {
-      background: #0d0d0d;
-      border-radius: 16px;
-      padding: 40px 32px;
-      max-width: 640px;
-      width: 100%;
-      margin-bottom: 40px;
-      text-align: left;
-      opacity: 0;
-      animation: fadeIn 1s ease-out 0.7s forwards;
-    }
-
-    .program-box-title {
-      font-family: 'Archivo', sans-serif;
-      font-weight: 700;
-      font-size: 22px;
-      color: #ffffff;
-      margin-bottom: 16px;
-    }
-
-    .program-box p {
-      font-family: 'Inter', sans-serif;
-      font-size: 14.5px;
-      color: #a1a1aa;
+      color: #71717a;
+      max-width: 400px;
       line-height: 1.7;
-      margin-bottom: 16px;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeIn 1s ease-out 0.5s forwards;
+      position: relative; z-index: 2;
     }
-
-    .program-box p:last-child {
-      margin-bottom: 0;
-    }
-
-    .program-box .highlight {
-      color: #ffffff;
-      font-weight: 500;
-    }
-
-    .program-features {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .program-feature {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-    }
-
-    .program-feature-icon {
-      flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 2px;
-    }
-
-    .program-feature-icon svg {
-      width: 10px;
-      height: 10px;
-    }
-
-    .program-feature span {
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      color: #d4d4d8;
-      line-height: 1.5;
-    }
-
-    /* ══════════════════════════════════════════
-       CTA BUTTON
-       ══════════════════════════════════════════ */
-    .cta-button {
+    .hero-cta {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: #ffffff;
-      color: #000000;
+      gap: 10px;
+      background: #fff;
+      color: #000;
       font-family: 'Archivo', sans-serif;
       font-weight: 700;
       font-size: 15px;
-      padding: 14px 36px;
+      padding: 15px 36px;
       border-radius: 12px;
       border: none;
       cursor: pointer;
-      transition: all 0.25s ease;
       text-decoration: none;
+      transition: all 0.25s ease;
       opacity: 0;
-      animation: fadeIn 1s ease-out 0.8s forwards;
+      animation: fadeIn 1s ease-out 0.65s forwards;
+      position: relative; z-index: 2;
     }
+    .hero-cta:hover { background: #e4e4e7; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(255,255,255,0.08); }
+    .hero-cta .arr { transition: transform 0.2s ease; font-size: 18px; }
+    .hero-cta:hover .arr { transform: translateX(3px); }
 
-    .cta-button:hover {
-      background: #e4e4e7;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
-    }
-
-    .cta-button:active {
-      transform: translateY(0);
-    }
-
-    .cta-button .chevron {
-      font-size: 18px;
-      font-weight: 400;
-      transition: transform 0.2s ease;
-    }
-
-    .cta-button:hover .chevron {
-      transform: translateX(3px);
-    }
-
-    .cta-button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .cta-button .spinner {
-      display: none;
-      width: 18px;
-      height: 18px;
-      border: 2px solid rgba(0,0,0,0.2);
-      border-top-color: #000;
-      border-radius: 50%;
-      animation: spin 0.6s linear infinite;
-    }
-
-    .cta-button.loading .spinner {
-      display: inline-block;
-    }
-
-    .cta-button.loading .btn-text,
-    .cta-button.loading .chevron {
-      display: none;
-    }
-
-    .urgency-text {
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      color: #71717a;
-      margin-top: 16px;
-      opacity: 0;
-      animation: fadeIn 1s ease-out 0.9s forwards;
-    }
-
-    .price-text {
-      font-family: 'Archivo', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      color: #a1a1aa;
-      margin-top: 24px;
-      letter-spacing: 0.02em;
-      opacity: 0;
-      animation: fadeIn 1s ease-out 0.85s forwards;
-    }
-
-    .price-text strong {
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 18px;
-    }
-
-    /* ══════════════════════════════════════════
-       TESTIMONIALS SECTION
-       ══════════════════════════════════════════ */
-    .testimonials {
-      padding: 80px 24px 60px;
-    }
-
-    .testimonials-label {
-      font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #a1a1aa;
-      text-align: center;
-      margin-bottom: 12px;
-    }
-
-    .testimonials-title {
-      font-family: 'Archivo', sans-serif;
-      font-weight: 800;
-      font-size: clamp(32px, 6vw, 52px);
-      text-align: center;
-      color: #ffffff;
-      margin-bottom: 48px;
-      letter-spacing: -0.02em;
-    }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      max-width: 900px;
+    /* ═══════ LEAD MAGNET ═══════ */
+    .lead-section { padding: 80px 24px; }
+    .lead-box {
+      max-width: 680px;
       margin: 0 auto;
-    }
-
-    .testimonial-card {
-      background: #0d0d0d;
-      border-radius: 16px;
-      padding: 32px 28px;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.3s ease;
-    }
-
-    .testimonial-card:hover {
-      transform: translateY(-3px);
-    }
-
-    .testimonial-quote {
-      font-family: 'Archivo', sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-      line-height: 1.45;
-      color: #ffffff;
-      margin-bottom: 20px;
-      flex-grow: 1;
-    }
-
-    .testimonial-stars {
-      margin-bottom: 16px;
-      font-size: 20px;
-      letter-spacing: 2px;
-    }
-
-    .star {
-      color: #facc15;
-    }
-
-    .testimonial-handle {
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      color: #71717a;
-    }
-
-    /* ══════════════════════════════════════════
-       BOTTOM CTA
-       ══════════════════════════════════════════ */
-    .bottom-cta {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 24px 80px;
-    }
-
-    .bottom-cta .cta-button {
-      opacity: 1;
-      animation: none;
-    }
-
-    .bottom-cta .urgency-text {
-      opacity: 1;
-      animation: none;
-    }
-
-    /* ══════════════════════════════════════════
-       FOOTER
-       ══════════════════════════════════════════ */
-    .footer {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 60px 24px 40px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .footer-logo svg {
-      width: 36px;
-      height: 36px;
-      opacity: 0.8;
-    }
-
-    .footer-text {
-      font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      color: #52525b;
-      margin-top: 20px;
-    }
-
-    /* ══════════════════════════════════════════
-       ANIMATIONS
-       ══════════════════════════════════════════ */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    /* Scroll reveal */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ══════════════════════════════════════════
-       RESPONSIVE
-       ══════════════════════════════════════════ */
-    @media (max-width: 768px) {
-      .hero {
-        padding: 48px 20px 40px;
-      }
-
-      .hero-title {
-        font-size: clamp(24px, 7vw, 36px);
-      }
-
-      .hero-subtitle {
-        font-size: 14px;
-        padding: 0 8px;
-      }
-
-      .program-box {
-        padding: 28px 22px;
-      }
-
-      .program-box-title {
-        font-size: 18px;
-      }
-
-      .testimonials-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .testimonial-card {
-        padding: 24px 22px;
-      }
-
-      .testimonial-quote {
-        font-size: 16px;
-      }
-
-      .cta-button {
-        font-size: 14px;
-        padding: 13px 28px;
-        width: 100%;
-        max-width: 340px;
-        justify-content: center;
-      }
-    }
-
-    @media (max-width: 400px) {
-      .hero-title {
-        font-size: 22px;
-      }
-
-      .testimonial-quote {
-        font-size: 15px;
-      }
-    }
-
-    /* ══════════════════════════════════════════
-       NEW SECTIONS (Reality, Audience, Curriculum, Value, Investment, FAQ)
-       ══════════════════════════════════════════ */
-    .section-wrapper {
-      padding: 80px 24px 60px;
-    }
-    
-    .section-label {
-      font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #71717a;
-      text-align: center;
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-family: 'Archivo', sans-serif;
-      font-weight: 800;
-      font-size: clamp(32px, 6vw, 52px);
-      text-align: center;
-      color: #ffffff;
-      margin-bottom: 48px;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-    }
-    
-    /* Reality Check */
-    .reality-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      max-width: 960px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .reality-number {
-      font-family: 'Archivo', sans-serif;
-      font-weight: 600;
-      font-size: clamp(40px, 8vw, 64px);
-      color: #ffffff;
-      margin-bottom: 8px;
-      line-height: 1;
-    }
-    .reality-text {
-      font-family: 'Inter', sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #a1a1aa;
-    }
-
-    /* Audience Qualification */
-    .audience-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      max-width: 1040px;
-      margin: 0 auto;
-    }
-    .audience-card {
-      background: #0d0d0d;
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 16px;
-      padding: 40px;
-    }
-    .audience-card.dimmed {
-      background: rgba(13, 13, 13, 0.4);
-    }
-    .audience-label {
-      font-family: 'Inter', sans-serif;
-      font-size: 13px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #ffffff;
-      margin-bottom: 32px;
-    }
-    .audience-card.dimmed .audience-label {
-      color: #71717a;
-    }
-    .audience-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-    .audience-list-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-    }
-    .audience-list-item svg {
-      flex-shrink: 0;
-      width: 24px;
-      height: 24px;
-      margin-top: 2px;
-      color: #ffffff;
-    }
-    .audience-card.dimmed .audience-list-item svg {
-      color: #71717a;
-    }
-    .audience-list-item span {
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      color: #a1a1aa;
-      line-height: 1.6;
-    }
-
-    /* Curriculum Timeline */
-    .timeline-container {
-      max-width: 800px;
-      margin: 0 auto;
-      position: relative;
-      padding-top: 32px;
-    }
-    .timeline-line {
-      position: absolute;
-      left: 32px;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent);
-    }
-    .timeline-item {
-      display: flex;
-      position: relative;
-      margin-bottom: 40px;
-    }
-    .timeline-item:last-child {
-      margin-bottom: 0;
-    }
-    .timeline-number {
-      width: 64px;
-      height: 64px;
-      flex-shrink: 0;
-      background: #000;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Archivo', sans-serif;
-      font-weight: 700;
-      font-size: 20px;
-      color: #ffffff;
-      z-index: 2;
-    }
-    .timeline-content {
-      margin-left: 32px;
-      background: #0d0d0d;
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 12px;
-      padding: 32px;
-      flex-grow: 1;
-    }
-    .timeline-meta {
-      font-family: 'Inter', sans-serif;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: #71717a;
-      margin-bottom: 8px;
-    }
-    .timeline-title {
-      font-family: 'Archivo', sans-serif;
-      font-weight: 700;
-      font-size: 24px;
-      color: #ffffff;
-      margin-bottom: 12px;
-    }
-    .timeline-desc {
-      font-family: 'Inter', sans-serif;
-      font-size: 14.5px;
-      color: #a1a1aa;
-      line-height: 1.6;
-    }
-
-    /* Value Anatomy */
-    .value-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      max-width: 960px;
-      margin: 0 auto;
-    }
-    .value-card {
-      background: #0d0d0d;
-      border-left: 4px solid rgba(255,255,255,0.06);
-      padding: 32px;
-    }
-    .value-card.highlight {
-      border-left-color: #ffffff;
-    }
-    .value-title {
-      font-family: 'Archivo', sans-serif;
-      font-weight: 700;
-      font-size: 20px;
-      color: #ffffff;
-      margin-bottom: 12px;
-    }
-    .value-desc {
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      color: #a1a1aa;
-      line-height: 1.6;
-    }
-
-    /* Investment Paradigm */
-    .investment-box {
-      max-width: 800px;
-      margin: 0 auto;
-      background: #0d0d0d;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 60px 40px;
-      text-align: center;
+      background: #0a0a0a;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px;
+      padding: 52px 44px;
       position: relative;
       overflow: hidden;
     }
-    .investment-glow {
-      position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 300px;
-      height: 300px;
-      background: rgba(255,255,255,0.05);
-      filter: blur(60px);
-      border-radius: 50%;
-      pointer-events: none;
+    .lead-glow {
+      position: absolute; top: -60px; right: -60px; width: 200px; height: 200px;
+      background: rgba(255,255,255,0.025); filter: blur(50px); border-radius: 50%; pointer-events: none;
     }
-    .investment-top-border {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: #ffffff;
-    }
-    .investment-label {
+    .lead-badge {
+      display: inline-block;
       font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #71717a;
-      margin-bottom: 24px;
-      position: relative;
-      z-index: 2;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #000; background: #fff; padding: 5px 14px; border-radius: 100px; margin-bottom: 24px; position: relative; z-index: 2;
     }
-    .investment-title {
+    .lead-title {
+      font-family: 'Archivo', sans-serif; font-weight: 800; font-size: clamp(22px, 4vw, 32px);
+      color: #fff; margin-bottom: 14px; line-height: 1.2; letter-spacing: -0.02em; position: relative; z-index: 2;
+    }
+    .lead-desc {
+      font-family: 'Inter', sans-serif; font-size: 14.5px; color: #a1a1aa; line-height: 1.75;
+      margin-bottom: 28px; position: relative; z-index: 2;
+    }
+    .lead-desc strong { color: #fff; font-weight: 500; }
+    .lead-form { display: flex; gap: 10px; position: relative; z-index: 2; }
+    .lead-input {
+      flex: 1; background: #000; border: 1px solid rgba(255,255,255,0.1); border-radius: 10px;
+      padding: 14px 16px; font-family: 'Inter', sans-serif; font-size: 14px; color: #fff; outline: none; transition: border-color 0.25s ease;
+    }
+    .lead-input:focus { border-color: rgba(255,255,255,0.25); }
+    .lead-btn {
+      background: #fff; color: #000; font-family: 'Archivo', sans-serif; font-weight: 700;
+      font-size: 13px; padding: 14px 24px; border-radius: 10px; border: none; cursor: pointer; transition: all 0.25s ease; white-space: nowrap;
+    }
+    .lead-btn:hover { background: #e4e4e7; transform: translateY(-1px); }
+    .lead-success { display: none; text-align: center; padding: 16px 0; position: relative; z-index: 2; }
+    .lead-success.show { display: block; }
+    .lead-success h3 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 20px; color: #fff; margin-bottom: 8px; }
+    .lead-success p { font-family: 'Inter', sans-serif; font-size: 14px; color: #a1a1aa; line-height: 1.6; }
+
+    /* ═══════ WHOM I WORK WITH ═══════ */
+    .whom-section { padding: 100px 24px 80px; }
+    
+    .whom-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .video-card {
+      background: #0a0a0a;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: #111;
+    }
+    
+    .video-wrap iframe, .video-wrap video {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;
+    }
+    
+    .video-placeholder {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #0a0a0a, #111);
+    }
+    
+    .play-icon {
+      width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;
+    }
+    .video-card:hover .play-icon { background: rgba(255,255,255,0.14); transform: scale(1.06); }
+    .play-icon svg { width: 16px; height: 16px; margin-left: 2px; }
+
+    .video-meta { padding: 16px; }
+    .video-meta p { font-family: 'Inter', sans-serif; font-style: italic; font-size: 13px; color: #d4d4d8; line-height: 1.6; }
+    .video-meta strong { color: #fff; font-weight: 600; display: block; margin-top: 8px; font-style: normal; font-size: 12px; color: #71717a; }
+
+    .whom-next {
+      text-align: center;
+      margin-top: 56px;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: #fff;
+    }
+
+    /* ═══════ SESSION (DEEP PERSUASION) ═══════ */
+    .session-section { padding: 80px 24px 100px; }
+    
+    .session-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .session-content h2 {
       font-family: 'Archivo', sans-serif;
       font-weight: 800;
       font-size: clamp(32px, 5vw, 48px);
-      color: #ffffff;
-      margin-bottom: 48px;
-      line-height: 1.15;
-      position: relative;
-      z-index: 2;
+      color: #fff;
+      margin-bottom: 32px;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
     }
-    .investment-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-      align-items: center;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      padding: 40px 0;
-      margin-bottom: 40px;
-      position: relative;
-      z-index: 2;
+
+    .session-content p {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      color: #a1a1aa;
+      line-height: 1.8;
+      margin-bottom: 24px;
+      text-align: left;
     }
-    .investment-col {
+    
+    .session-content p strong { color: #fff; font-weight: 600; }
+
+    .session-quote {
+      font-family: 'Archivo', sans-serif;
+      font-size: 22px;
+      color: #fff;
+      font-weight: 700;
+      margin: 48px 0;
+      padding: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
       text-align: center;
     }
-    .investment-col:first-child {
-      border-right: 1px solid rgba(255,255,255,0.06);
+
+    .book-btn-wrap {
+      margin-top: 56px;
+      text-align: center;
     }
-    .investment-meta {
-      font-family: 'Inter', sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #a1a1aa;
-      margin-bottom: 12px;
-    }
-    .investment-amount {
+
+    .book-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: #fff;
+      color: #000;
       font-family: 'Archivo', sans-serif;
       font-weight: 800;
-      font-size: 40px;
-      color: #ffffff;
-    }
-    .investment-desc {
-      font-family: 'Inter', sans-serif;
-      font-size: 16px;
-      color: #a1a1aa;
-      line-height: 1.6;
-      max-width: 600px;
-      margin: 0 auto 40px;
-      position: relative;
-      z-index: 2;
-    }
-
-    /* FAQ */
-    .faq-container {
-      max-width: 760px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .faq-item {
-      background: #0d0d0d;
-      border: 1px solid rgba(255,255,255,0.06);
+      font-size: 18px;
+      padding: 20px 48px;
       border-radius: 12px;
+      border: none;
       cursor: pointer;
-      overflow: hidden;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
-    .faq-header {
-      padding: 24px 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .book-btn:hover {
+      background: #e4e4e7;
+      transform: scale(1.02);
+      box-shadow: 0 12px 40px rgba(255,255,255,0.15);
     }
-    .faq-question {
-      font-family: 'Inter', sans-serif;
-      font-weight: 600;
-      font-size: 16px;
-      color: #ffffff;
+
+    /* ═══════ BOOKING CALENDAR (WHITE THEME, SMALLER) ═══════ */
+    .booking-wrapper {
+      display: none; /* Hidden until button click */
+      padding: 40px 24px 100px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
-    .faq-icon {
-      font-size: 24px;
-      color: #71717a;
-      transition: transform 0.3s ease;
+    .booking-wrapper.show {
+      display: block;
+      opacity: 1;
     }
-    .faq-content {
-      max-height: 0;
-      transition: max-height 0.3s ease-out;
-      background: transparent;
+
+    /* Panel is white, crisp, compact */
+    .b-panel { 
+      max-width: 600px; /* Made smaller */
+      margin: 0 auto; 
+      background: #ffffff; 
+      border-radius: 20px; 
+      padding: 32px; 
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      color: #000;
     }
-    .faq-inner {
-      padding: 0 32px 32px;
-      border-top: 1px solid rgba(255,255,255,0.04);
-      margin-top: -8px;
-      padding-top: 24px;
-    }
-    .faq-answer {
-      font-family: 'Inter', sans-serif;
-      font-size: 14.5px;
-      color: #a1a1aa;
-      line-height: 1.6;
-    }
-    .faq-item.active .faq-icon {
-      transform: rotate(45deg);
-      color: #ffffff;
-    }
+
+    /* Steps inside white panel */
+    .b-steps { display: flex; justify-content: center; gap: 16px; margin-bottom: 32px; }
+    .b-step { display: flex; align-items: center; gap: 6px; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: #71717a; transition: color 0.3s ease; }
+    .b-step.active { color: #000; }
+    .b-step.done { color: #a1a1aa; }
+    .b-step-num { width: 22px; height: 22px; border-radius: 50%; border: 1px solid #e4e4e7; display: flex; align-items: center; justify-content: center; font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 10px; transition: all 0.3s ease; }
+    .b-step.active .b-step-num { background: #000; color: #fff; border-color: #000; }
+    .b-step.done .b-step-num { background: #f4f4f5; border-color: #e4e4e7; color: #71717a; }
+    .step-line { width: 20px; height: 1px; background: #e4e4e7; }
     
-    @media (min-width: 769px) {
-      .timeline-container {
-        padding-left: 0;
-      }
-      .timeline-line {
-        left: 50%;
-        transform: translateX(-50%);
-      }
-      .timeline-item:nth-child(odd) {
-        flex-direction: row-reverse;
-      }
-      .timeline-number {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-      .timeline-item:nth-child(even) .timeline-content {
-        margin-left: 0;
-        margin-right: calc(50% + 48px);
-      }
-      .timeline-item:nth-child(odd) .timeline-content {
-        margin-left: calc(50% + 48px);
-        margin-right: 0;
-      }
-    }
+    /* Calendar inside white panel */
+    .cal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .cal-month { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 16px; color: #000; }
+    .cal-nav { display: flex; gap: 4px; }
+    .cal-nav-btn { width: 28px; height: 28px; border-radius: 6px; background: #f4f4f5; border: 1px solid #e4e4e7; color: #3f3f46; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s ease; }
+    .cal-nav-btn:hover { background: #e4e4e7; color: #000; }
+    .cal-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
     
+    .cal-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-bottom: 4px; }
+    .cal-wd { text-align: center; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: #71717a; padding: 4px 0; }
+    
+    .cal-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+    .cal-day { text-align: center; padding: 8px 2px; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: #e4e4e7; cursor: default; transition: all 0.2s ease; }
+    .cal-day.avail { color: #000; cursor: pointer; background: #f8f8f8; }
+    .cal-day.avail:hover { background: #f0f0f0; }
+    .cal-day.sel { background: #000; color: #fff; font-weight: 700; }
+    
+    /* Time slots inside white panel */
+    .ts-panel { display: none; margin-top: 24px; padding-top: 24px; border-top: 1px solid #f4f4f5; }
+    .ts-panel.show { display: block; }
+    .ts-title { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 14px; color: #000; margin-bottom: 4px; }
+    .ts-sub { font-family: 'Inter', sans-serif; font-size: 11px; color: #71717a; margin-bottom: 16px; }
+    .ts-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+    .ts-slot { text-align: center; padding: 10px 4px; border-radius: 6px; border: 1px solid #e4e4e7; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; color: #3f3f46; cursor: pointer; transition: all 0.2s ease; background: #fff; }
+    .ts-slot:hover { border-color: #000; color: #000; }
+    .ts-slot.sel { border-color: #000; background: #000; color: #fff; font-weight: 700; }
+    .ts-slot.gone { opacity: 0.3; cursor: not-allowed; text-decoration: line-through; background: #fafafa; }
+
+    /* Form inside white panel */
+    .bf-panel { display: none; margin-top: 24px; padding-top: 24px; border-top: 1px solid #f4f4f5; }
+    .bf-panel.show { display: block; }
+    
+    .bf-summary { background: #fafafa; border: 1px solid #e4e4e7; border-radius: 8px; padding: 16px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; }
+    .bf-summary-info span:first-child { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #71717a; display: block; margin-bottom: 4px; }
+    .bf-summary-info span:last-child { font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 14px; color: #000; }
+    .bf-summary-price { font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 20px; color: #000; }
+    
+    .f-group { margin-bottom: 14px; }
+    .f-label { display: block; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #3f3f46; margin-bottom: 6px; }
+    .f-input { width: 100%; background: #fff; border: 1px solid #e4e4e7; border-radius: 8px; padding: 12px 14px; font-family: 'Inter', sans-serif; font-size: 13px; color: #000; outline: none; transition: border-color 0.2s ease; }
+    .f-input:focus { border-color: #000; }
+    .f-input::placeholder { color: #a1a1aa; }
+    .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    
+    .f-submit { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; background: #000; color: #fff; font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 14px; padding: 14px 32px; border-radius: 8px; border: none; cursor: pointer; transition: all 0.25s ease; margin-top: 8px; }
+    .f-submit:hover { background: #27272a; transform: translateY(-1px); }
+    .f-note { text-align: center; font-family: 'Inter', sans-serif; font-size: 10px; color: #71717a; margin-top: 12px; }
+    .f-error { display: none; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 10px 14px; margin-bottom: 16px; font-family: 'Inter', sans-serif; font-size: 12px; color: #dc2626; }
+    .f-error.show { display: block; }
+
+    /* ═══════ FOOTER ═══════ */
+    .footer { display: flex; flex-direction: column; align-items: center; padding: 56px 24px 36px; border-top: 1px solid rgba(255,255,255,0.04); }
+    .footer-logo svg { width: 28px; height: 34px; opacity: 0.6; }
+    .footer-text { font-family: 'Inter', sans-serif; font-size: 11px; color: #27272a; margin-top: 16px; }
+
+    /* ═══════ ANIMATIONS ═══════ */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+    .reveal.vis { opacity: 1; transform: translateY(0); }
+
+    /* ═══════ RESPONSIVE ═══════ */
     @media (max-width: 768px) {
-      .reality-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 32px 16px;
-      }
-      .audience-grid, .value-grid {
-        grid-template-columns: 1fr;
-      }
-      .investment-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      .investment-col:first-child {
-        border-right: none;
-        border-bottom: 1px solid rgba(255,255,255,0.06);
-        padding-bottom: 40px;
-      }
-      .timeline-content {
-        padding: 24px;
-        margin-left: 20px;
-      }
-      .timeline-number {
-        width: 48px;
-        height: 48px;
-        font-size: 16px;
-      }
-      .timeline-line {
-        left: 24px;
-      }
-    }
-
-    /* ══════════════════════════════════════════
-       CUSTOM SCROLLBAR
-       ══════════════════════════════════════════ */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #000;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: #27272a;
-      border-radius: 3px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: #3f3f46;
+      .hero { padding: 72px 20px 56px; }
+      .lead-box { padding: 36px 24px; }
+      .lead-form { flex-direction: column; }
+      .whom-grid { grid-template-columns: 1fr; }
+      .session-content { padding: 40px 24px; }
+      .b-panel { padding: 24px 16px; }
+      .ts-grid { grid-template-columns: repeat(2, 1fr); }
+      .b-step span { display: none; }
+      .f-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
 
-<!-- ═══════════════════════════════════════════
-     HERO SECTION
-     ═══════════════════════════════════════════ -->
+<!-- ═══ HERO ═══ -->
 <section class="hero" id="hero">
-  <!-- Logo -->
+  <div class="hero-glow"></div>
   <div class="hero-logo">
     <svg viewBox="0 0 72 88" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="The Threshold Program">
-      <path d="M36 8 C34 28, 38 44, 36 80" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-      <path d="M12 32 C20 28, 52 28, 60 32" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-      <path d="M28 80 C32 78, 40 78, 44 80" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M36 8 C34 28, 38 44, 36 80" stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <path d="M12 32 C20 28, 52 28, 60 32" stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <path d="M28 80 C32 78, 40 78, 44 80" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
     </svg>
   </div>
-
-  <!-- Headline -->
-  <h1 class="hero-title">
-    How I help you cross the threshold — in just 7 days of live, one‑on‑one sessions.
-  </h1>
-
-  <!-- Subtitle -->
-  <p class="hero-subtitle">
-    Real change isn't found on the surface.
-  </p>
-
-  <!-- Program Description Box -->
-  <div class="program-box">
-    <h2 class="program-box-title">What is The Threshold Program?</h2>
-    <p>
-      This is a <span class="highlight">7-day intensive</span> with <span class="highlight">7 live, one-on-one sessions</span> — designed to take you through your threshold phase. Not a course. Not a community. A direct, personal intervention.
-    </p>
-    <p>
-      Over 7 days, I work with you directly — clarifying what's actually holding you back, solving the specific problems in your path, and providing my inbuilt systems and resources to dismantle the barriers you can't see on your own.
-    </p>
-    <p>
-      By the end of these 7 sessions, <span class="highlight">your threshold phase will be crossed.</span>
-    </p>
-
-    <div class="program-features">
-      <div class="program-feature">
-        <div class="program-feature-icon">
-          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5 L4.5 7.5 L8 2.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <span>7 live one-on-one sessions — no recordings, no group calls</span>
-      </div>
-      <div class="program-feature">
-        <div class="program-feature-icon">
-          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5 L4.5 7.5 L8 2.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <span>Personalized clarity on what's actually blocking you</span>
-      </div>
-      <div class="program-feature">
-        <div class="program-feature-icon">
-          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5 L4.5 7.5 L8 2.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <span>Access to my inbuilt resources, frameworks, and systems</span>
-      </div>
-      <div class="program-feature">
-        <div class="program-feature-icon">
-          <svg viewBox="0 0 10 10" fill="none"><path d="M2 5 L4.5 7.5 L8 2.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
-        <span>Your threshold phase — crossed within 7 days</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Price -->
-
-
-  <!-- CTA Button -->
-  <a href="/apply.html" class="cta-button" id="hero-cta">
-    <span class="btn-text">Apply for The Threshold Program</span>
-    <span class="chevron">›</span>
+  <h1 class="hero-title">I help ambitious minds escape self‑created limits.</h1>
+  <p class="hero-sub">Before you go any further — there's something you need to see first.</p>
+  <a href="#free-resource" class="hero-cta">
+    <span>Get The Free Framework</span>
+    <span class="arr">↓</span>
   </a>
-
-  <!-- Urgency -->
-  <p class="urgency-text">Limited spots available. Application closing soon.</p>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     REALITY CHECK
-     ═══════════════════════════════════════════ -->
-<section class="section-wrapper" style="padding-top: 40px;">
-  <div class="reality-grid">
-    <div class="reveal">
-      <h3 class="reality-number">7</h3>
-      <p class="reality-text">Intense Sessions</p>
+
+<!-- ═══ LEAD MAGNET ═══ -->
+<section class="lead-section" id="free-resource">
+  <div class="lead-box reveal">
+    <div class="lead-glow"></div>
+    <div class="lead-badge">FREE INTERACTIVE DIAGNOSTIC</div>
+
+    <h2 class="lead-title">The 5 Invisible Limits Holding You Back</h2>
+
+    <p class="lead-desc">
+      <strong>93% of the people I work with</strong> share at least 3 of these 5 patterns — patterns so deeply embedded, they mistake them for personality. This 2-minute Interactive Diagnostic will analyze your psychological architecture and show you exactly which invisible limits are capping your potential right now.
+    </p>
+
+    <div id="lead-form-wrap">
+      <div class="lead-form" id="lead-form">
+        <input type="email" class="lead-input" id="lead-email" placeholder="Your email address" required />
+        <button class="lead-btn" id="lead-btn" onclick="handleLead()">Unlock Diagnostic →</button>
+      </div>
     </div>
-    <div class="reveal" style="transition-delay: 100ms;">
-      <h3 class="reality-number">1</h3>
-      <p class="reality-text">Singular Focus</p>
-    </div>
-    <div class="reveal" style="transition-delay: 200ms;">
-      <h3 class="reality-number">Shift</h3>
-      <p class="reality-text">Irreversible Baseline</p>
-    </div>
-    <div class="reveal" style="transition-delay: 300ms;">
-      <h3 class="reality-number">High</h3>
-      <p class="reality-text">Cost of Indecision</p>
+
+    <div class="lead-success" id="lead-ok">
+      <h3>Analyzing...</h3>
+      <p>Redirecting to your private diagnostic session.</p>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     CURRICULUM TIMELINE
-     ═══════════════════════════════════════════ -->
-<section class="section-wrapper" id="curriculum">
-  <p class="section-label reveal">THE ARCHITECTURE</p>
-  <h2 class="section-title reveal">7 Days. Zero Friction.<br/>One Irreversible ROI.</h2>
-  
-  <div class="timeline-container">
-    <div class="timeline-line reveal"></div>
-    
-    <!-- Day 1 -->
-    <div class="timeline-item reveal">
-      <div class="timeline-number">01</div>
-      <div class="timeline-content">
-        <p class="timeline-meta">Session 1</p>
-        <h3 class="timeline-title">The Subconscious Audit</h3>
-        <p class="timeline-desc">We go below the surface to dismantle the exact psychological scripts that have capped your performance for years. Recursive surgery on your internal architecture to break the cycle of self-sabotage.</p>
-      </div>
-    </div>
 
-    <!-- Day 2 -->
-    <div class="timeline-item reveal">
-      <div class="timeline-number">02</div>
-      <div class="timeline-content">
-        <p class="timeline-meta">Session 2</p>
-        <h3 class="timeline-title">The Default State Autopsy</h3>
-        <p class="timeline-desc">Forensic analysis of your habits, triggers, and environments. We identify where your momentum is being quietly bled out and install the cognitive tools to permanently break stagnant patterns.</p>
-      </div>
-    </div>
+<!-- ═══ WHOM I WORK WITH ═══ -->
+<section class="whom-section" id="whom-i-work-with">
+  <p class="section-label reveal">WHOM I WORK WITH</p>
+  <h2 class="section-heading reveal">High-achievers who hit an invisible wall.</h2>
 
-    <!-- Day 3 -->
-    <div class="timeline-item reveal">
-      <div class="timeline-number">03</div>
-      <div class="timeline-content">
-        <p class="timeline-meta">Session 3</p>
-        <h3 class="timeline-title">Media & Distribution Mastery</h3>
-        <p class="timeline-desc">In the digital age, content is the ultimate leadership engine. We design your personalized distribution framework, leveraging content creation to build authority, trust, and influence at scale.</p>
-      </div>
-    </div>
-
-    <!-- Day 4 -->
-    <div class="timeline-item reveal">
-      <div class="timeline-number">04</div>
-      <div class="timeline-content">
-        <p class="timeline-meta">Session 4</p>
-        <h3 class="timeline-title">Global Arbitrage & Trade</h3>
-        <p class="timeline-desc">Moving beyond local boundaries. I reveal how top percentile players exploit international trade and global arbitrage to create asymmetrical leverage and access high-ticket foreign markets.</p>
-      </div>
-    </div>
-
-    <!-- Day 5 -->
-    <div class="timeline-item reveal">
-      <div class="timeline-number">05</div>
-      <div class="timeline-content">
-        <p class="timeline-meta">Session 5</p>
-        <h3 class="timeline-title">The Attention Fortress</h3>
-        <p class="timeline-desc">In an era of distraction, focus is a competitive advantage. I give you the exact frameworks to command 4+ hours of deep, needle-moving work on demand, turning your attention into an unbreakable asset.</p>
-      </div>
-    </div>
-
-    <!-- Day 6 -->
-    <div class="timeline-item reveal">
-      <div class="timeline-number">06</div>
-      <div class="timeline-content">
-        <p class="timeline-meta">Session 6</p>
-        <h3 class="timeline-title">Elite Social Architecture</h3>
-        <p class="timeline-desc">Ruthless audit of your professional boundaries. Building a protective architecture designed to attract a high-leverage network while maximizing your network's exposure to world-class opportunities.</p>
-      </div>
-    </div>
-
-    <!-- Day 7 -->
-    <div class="timeline-item reveal">
-      <div class="timeline-number">07</div>
-      <div class="timeline-content">
-        <p class="timeline-meta">Session 7</p>
-        <h3 class="timeline-title">The Integration Firewall</h3>
-        <p class="timeline-desc">Securing the perimeter of your new identity. Locking in the mindset and systems required for perpetual success, ensuring your threshold is permanently crossed and your regression paths are sealed.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     VALUE ANATOMY
-     ═══════════════════════════════════════════ -->
-<section class="section-wrapper" id="outcomes">
-  <p class="section-label reveal">OUTCOME</p>
-  <h2 class="section-title reveal" style="max-width: 800px; margin-left: auto; margin-right: auto;">What you possess at the finish line.</h2>
-
-  <div class="value-grid">
-    <div class="value-card highlight reveal">
-      <h4 class="value-title">The New OS</h4>
-      <p class="value-desc">An irreversibly rewired identity operating system.</p>
-    </div>
-    <div class="value-card reveal" style="transition-delay: 100ms;">
-      <h4 class="value-title">Automated Protocol</h4>
-      <p class="value-desc">A personalized daily protocol running entirely on autopilot.</p>
-    </div>
-    <div class="value-card reveal" style="transition-delay: 200ms;">
-      <h4 class="value-title">Absolute Clarity</h4>
-      <p class="value-desc">Absolute clarity on your 90-day, 1-year, and 5-year trajectory.</p>
-    </div>
-    <div class="value-card reveal">
-      <h4 class="value-title">Elite Logic</h4>
-      <p class="value-desc">Decision frameworks used exclusively by top percentile performers.</p>
-    </div>
-    <div class="value-card reveal" style="transition-delay: 100ms;">
-      <h4 class="value-title">Commanded Focus</h4>
-      <p class="value-desc">The ability to enter a flow state and command deep focus on demand.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     AUDIENCE QUALIFICATION
-     ═══════════════════════════════════════════ -->
-<section class="section-wrapper" id="audience">
-  <div class="audience-grid">
-    <!-- For You -->
-    <div class="audience-card reveal">
-      <h4 class="audience-label">This is for you if:</h4>
-      <ul class="audience-list">
-        <li class="audience-list-item">
-          <svg viewBox="0 0 24 24" fill="none" class="shrink-0" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          <span>You know you are operating at a fraction of your capacity.</span>
-        </li>
-        <li class="audience-list-item">
-          <svg viewBox="0 0 24 24" fill="none" class="shrink-0" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          <span>You want a system, not motivation.</span>
-        </li>
-        <li class="audience-list-item">
-          <svg viewBox="0 0 24 24" fill="none" class="shrink-0" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-          <span>You are willing to perform 7 days of deep, focused work.</span>
-        </li>
-      </ul>
-    </div>
-    
-    <!-- NOT For You -->
-    <div class="audience-card dimmed reveal" style="transition-delay: 100ms;">
-      <h4 class="audience-label">This is NOT for you if:</h4>
-      <ul class="audience-list">
-        <li class="audience-list-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-          <span>You want a magic pill with zero effort.</span>
-        </li>
-        <li class="audience-list-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-          <span>You are looking for entertainment.</span>
-        </li>
-        <li class="audience-list-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-          <span>You are not willing to question your current identity.</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     TESTIMONIALS SECTION
-     ═══════════════════════════════════════════ -->
-<section class="testimonials" id="testimonials">
-  <p class="testimonials-label reveal">TESTIMONIALS</p>
-  <h2 class="testimonials-title reveal">Member Stories</h2>
-
-  <div class="testimonials-grid">
+  <div class="whom-grid reveal">
     <!-- Testimonial 1 -->
-    <div class="testimonial-card reveal">
-      <p class="testimonial-quote">
-        "I had been stuck in the same loop for 2 years. After 7 days with Shray, I finally understood what was actually holding me back — and it wasn't what I thought."
-      </p>
-      <div class="testimonial-stars">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+    <div class="video-card">
+      <div class="video-wrap">
+        <div class="video-placeholder">
+          <div class="play-icon"><svg viewBox="0 0 24 24" fill="#fff"><polygon points="8,5 20,12 8,19"></polygon></svg></div>
+        </div>
       </div>
-      <p class="testimonial-handle">- Arjun M.</p>
+      <div class="video-meta">
+        <p>"Within 20 minutes, Shray showed me that my issue wasn't procrastination—it was a fear of outshining someone I love." <strong>— Arjun M.</strong></p>
+      </div>
     </div>
 
     <!-- Testimonial 2 -->
-    <div class="testimonial-card reveal">
-      <p class="testimonial-quote">
-        "I was hesitant about spending ₹24,500 on 7 sessions. By day 3, I knew this was the best investment I'd ever made in myself. The clarity is unreal."
-      </p>
-      <div class="testimonial-stars">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+    <div class="video-card">
+      <div class="video-wrap">
+        <div class="video-placeholder">
+          <div class="play-icon"><svg viewBox="0 0 24 24" fill="#fff"><polygon points="8,5 20,12 8,19"></polygon></svg></div>
+        </div>
       </div>
-      <p class="testimonial-handle">- Priya S.</p>
+      <div class="video-meta">
+        <p>"It wasn't coaching. It was surgery. Precise and uncomfortable. I've done more in 3 weeks than the past 6 months." <strong>— Rohan K.</strong></p>
+      </div>
     </div>
 
     <!-- Testimonial 3 -->
-    <div class="testimonial-card reveal">
-      <p class="testimonial-quote">
-        "The one-on-one format makes all the difference. No fluff, no generic advice. Every session felt like surgery — precise and exactly what I needed to hear."
-      </p>
-      <div class="testimonial-stars">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+    <div class="video-card">
+      <div class="video-wrap">
+        <div class="video-placeholder">
+          <div class="play-icon"><svg viewBox="0 0 24 24" fill="#fff"><polygon points="8,5 20,12 8,19"></polygon></svg></div>
+        </div>
       </div>
-      <p class="testimonial-handle">- Rohan K.</p>
+      <div class="video-meta">
+        <p>"I've spent lakhs on courses. This single session moved a needle nothing else could. You can't put a price on seeing your own cage." <strong>— Kavya D.</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="whom-next reveal">You can be the next.</h3>
+</section>
+
+
+<!-- ═══ SESSION (DEEP PERSUASION) ═══ -->
+<section class="session-section" id="session">
+  <div class="session-content reveal">
+    <h2>The Breakthrough Session</h2>
+    <p>You have likely spent years accumulating knowledge, discipline, and frameworks. You have read the books. You have listened to the podcasts. You already know <strong>what</strong> you should be doing.</p>
+    
+    <p>Yet, here you are. Operating below your true capacity. Feeling the friction of an invisible ceiling. <strong>This is because your problem is not a lack of information. It is a psychological architecture you built to keep yourself safe.</strong></p>
+    
+    <p>The Breakthrough Session is not traditional coaching. It is a <strong>surgical, 90-minute intervention</strong>. We bypass the surface-level symptoms and go directly into the root code of your self-sabotage.</p>
+
+    <div class="session-quote">
+      "In 90 minutes, we find the exact self-created limit running your life. And we dismantle it. Irreversibly."
     </div>
 
-    <!-- Testimonial 4 -->
-    <div class="testimonial-card reveal">
-      <p class="testimonial-quote">
-        "I've done courses, coaches, and communities. Nothing moved the needle. These 7 days broke through something I couldn't break through on my own. Period."
-      </p>
-      <div class="testimonial-stars">
-        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-      </div>
-      <p class="testimonial-handle">- Kavya D.</p>
+    <p>Imagine what happens when the one core belief that has been quietly throttling your ambition for the last decade is suddenly removed. The resistance vanishes. The overthinking stops. <strong>The cage door opens.</strong></p>
+
+    <p>This session is intense, uncomfortable, and deeply liberating. It is designed for those who are finally ready to stop playing small.</p>
+
+    <div class="book-btn-wrap">
+      <button class="book-btn" onclick="revealBooking()">
+        Book Your Session <span style="font-size: 20px;">›</span>
+      </button>
     </div>
   </div>
 </section>
 
 
-
-<!-- ═══════════════════════════════════════════
-     FAQ SECTION
-     ═══════════════════════════════════════════ -->
-<section class="section-wrapper" id="faq">
-  <p class="section-label reveal">CLARIFICATION</p>
-  <h2 class="section-title reveal">Everything else.</h2>
-
-  <div class="faq-container">
-    <div class="faq-item reveal" onclick="toggleFaq(this)">
-      <div class="faq-header">
-        <h3 class="faq-question">Is this another motivational course?</h3>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-content">
-        <div class="faq-inner">
-          <p class="faq-answer">No. Zero fluff. We only deal in actionable frameworks and architectural system upgrades.</p>
-        </div>
-      </div>
+<!-- ═══ BOOKING CALENDAR ═══ -->
+<section class="booking-wrapper" id="booking">
+  <div class="b-panel">
+    
+    <div class="b-steps">
+      <div class="b-step active" id="bs-1"><div class="b-step-num">1</div><span>Date</span></div>
+      <div class="step-line"></div>
+      <div class="b-step" id="bs-2"><div class="b-step-num">2</div><span>Time</span></div>
+      <div class="step-line"></div>
+      <div class="b-step" id="bs-3"><div class="b-step-num">3</div><span>Book</span></div>
     </div>
 
-    <div class="faq-item reveal" onclick="toggleFaq(this)">
-      <div class="faq-header">
-        <h3 class="faq-question">What if I have tried everything already?</h3>
-        <span class="faq-icon">+</span>
-      </div>
-      <div class="faq-content">
-        <div class="faq-inner">
-          <p class="faq-answer">That is exactly who this is for. Information isn't your barrier; your internal architecture is. We dismantle and rebuild it.</p>
+    <!-- Calendar -->
+    <div id="cal-sec">
+      <div class="cal-head">
+        <h3 class="cal-month" id="cal-label"></h3>
+        <div class="cal-nav">
+          <button class="cal-nav-btn" id="cal-prev" onclick="navMonth(-1)"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="cal-nav-btn" id="cal-next" onclick="navMonth(1)"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
         </div>
       </div>
+      <div class="cal-weekdays">
+        <div class="cal-wd">Su</div><div class="cal-wd">Mo</div><div class="cal-wd">Tu</div><div class="cal-wd">We</div><div class="cal-wd">Th</div><div class="cal-wd">Fr</div><div class="cal-wd">Sa</div>
+      </div>
+      <div class="cal-days" id="cal-days"></div>
     </div>
 
-    <div class="faq-item reveal" onclick="toggleFaq(this)">
-      <div class="faq-header">
-        <h3 class="faq-question">How much time per day does this take?</h3>
-        <span class="faq-icon">+</span>
+    <!-- Time slots -->
+    <div class="ts-panel" id="ts-panel">
+      <h3 class="ts-title" id="ts-title">Available times</h3>
+      <p class="ts-sub" id="ts-sub"></p>
+      <div class="ts-grid" id="ts-grid"></div>
+    </div>
+
+    <!-- Booking form -->
+    <div class="bf-panel" id="bf-panel">
+      <div class="bf-summary">
+        <div class="bf-summary-info"><span>Your Session</span><span id="bf-val">—</span></div>
+        <span class="bf-summary-price">₹4,999</span>
       </div>
-      <div class="faq-content">
-        <div class="faq-inner">
-          <p class="faq-answer">Expect to spend 60-90 minutes per session of deep, focused, uninterrupted work. No multitasking.</p>
+
+      <div class="f-error" id="bf-err"></div>
+
+      <form id="bf-form" onsubmit="submitBooking(event)">
+        <div class="f-row">
+          <div class="f-group">
+            <label class="f-label" for="bn">Full Name</label>
+            <input type="text" id="bn" class="f-input" placeholder="Enter your name" required autocomplete="name" />
+          </div>
+          <div class="f-group">
+            <label class="f-label" for="bp">Phone Number</label>
+            <input type="tel" id="bp" class="f-input" placeholder="+91 98765 43210" required autocomplete="tel" />
+          </div>
         </div>
-      </div>
+        <div class="f-group">
+          <label class="f-label" for="be">Email Address</label>
+          <input type="email" id="be" class="f-input" placeholder="you@example.com" required autocomplete="email" />
+        </div>
+        <div class="f-group">
+          <label class="f-label" for="bs">What is your biggest invisible limit right now?</label>
+          <input type="text" id="bs" class="f-input" placeholder="Be brutally honest..." required />
+        </div>
+        <button type="submit" class="f-submit" id="bf-btn">
+          Confirm & Pay Securely
+        </button>
+        <p class="f-note">Powered by Razorpay. Guaranteed secure checkout.</p>
+      </form>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     BOTTOM CTA
-     ═══════════════════════════════════════════ -->
-<section class="bottom-cta">
-  <a href="/apply.html" class="cta-button" id="bottom-cta">
-    <span class="btn-text">Apply for The Threshold Program</span>
-    <span class="chevron">›</span>
-  </a>
-  <p class="urgency-text">Limited spots available. Application closing soon.</p>
-</section>
-
-
-<!-- ═══════════════════════════════════════════
-     FOOTER
-     ═══════════════════════════════════════════ -->
+<!-- ═══ FOOTER ═══ -->
 <footer class="footer">
   <div class="footer-logo">
     <svg viewBox="0 0 72 88" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M36 8 C34 28, 38 44, 36 80" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-      <path d="M12 32 C20 28, 52 28, 60 32" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-      <path d="M28 80 C32 78, 40 78, 44 80" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M36 8 C34 28, 38 44, 36 80" stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <path d="M12 32 C20 28, 52 28, 60 32" stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <path d="M28 80 C32 78, 40 78, 44 80" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
     </svg>
   </div>
-  <p class="footer-text">© 2026 India - All rights reserved.</p>
+  <p class="footer-text">© 2026 The Threshold Program — All rights reserved.</p>
 </footer>
 
-
-<!-- ═══════════════════════════════════════════
-     SCRIPTS
-     ═══════════════════════════════════════════ -->
+<script src="/js/api.js"></script>
 <script>
-  // ── Scroll Reveal ──────────────────────────
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+  // Reveal on scroll
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('vis'); obs.unobserve(e.target); }});
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(a.getAttribute('href'));
+      if(t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -40px 0px'
   });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-  // ── FAQ Accordion ────────────────────────────
-  function toggleFaq(element) {
-    const isActive = element.classList.contains('active');
+  // Lead magnet
+  function handleLead() {
+    const inp = document.getElementById('lead-email');
+    const email = inp.value.trim();
+    if(!email || !email.includes('@') || !email.includes('.')) {
+      inp.style.borderColor = 'rgba(220,38,38,0.4)';
+      inp.focus();
+      setTimeout(() => inp.style.borderColor = '', 2000);
+      return;
+    }
+    try { if(typeof api!=='undefined' && api.leads) api.leads.captureEmail(email); } catch(e){}
     
-    // Close all open FAQs
-    document.querySelectorAll('.faq-item').forEach(item => {
-      item.classList.remove('active');
-      item.querySelector('.faq-content').style.maxHeight = null;
-    });
+    document.getElementById('lead-form-wrap').style.display = 'none';
+    document.getElementById('lead-ok').classList.add('show');
+    
+    // Redirect to diagnostic after a brief delay
+    setTimeout(() => {
+      window.location.href = '/diagnostic.html';
+    }, 800);
+  }
 
-    if (!isActive) {
-      element.classList.add('active');
-      const content = element.querySelector('.faq-content');
-      content.style.maxHeight = content.scrollHeight + "px";
+  // Booking Reveal
+  function revealBooking() {
+    const b = document.getElementById('booking');
+    b.classList.add('show');
+    setTimeout(() => {
+      b.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  }
+
+  // Calendar Logic
+  const MO = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const SLOTS = ['10:00 AM','11:30 AM','1:00 PM','2:30 PM','4:00 PM','5:30 PM','7:00 PM'];
+  let cMonth, cYear, selDate = null, selTime = null;
+
+  function sRand(s){ let x=Math.sin(s)*10000; return x-Math.floor(x); }
+
+  function getGone(ds){
+    let s=0; for(let i=0;i<ds.length;i++) s+=ds.charCodeAt(i)*(i+1);
+    const g=[]; SLOTS.forEach((_,i)=>{ if(sRand(s+i*7)<0.25) g.push(i); }); return g;
+  }
+
+  function avail(d){
+    const now=new Date(); now.setHours(0,0,0,0);
+    const min=new Date(now); min.setDate(min.getDate()+2);
+    const max=new Date(now); max.setDate(max.getDate()+30);
+    if(d.getDay()===0) return false;
+    return d>=min && d<=max;
+  }
+
+  function renderCal(){
+    document.getElementById('cal-label').textContent = MO[cMonth]+' '+cYear;
+    const now=new Date(); now.setHours(0,0,0,0);
+    const f=new Date(cYear,cMonth,1), l=new Date(cYear,cMonth+1,0);
+    let h='';
+    for(let i=0;i<f.getDay();i++) h+='<div class="cal-day"></div>';
+    for(let d=1;d<=l.getDate();d++){
+      const dt=new Date(cYear,cMonth,d); dt.setHours(0,0,0,0);
+      const ok=avail(dt), td=dt.getTime()===now.getTime(), sl=selDate&&dt.getTime()===selDate.getTime();
+      let c='cal-day'; if(ok) c+=' avail'; if(td) c+=' today'; if(sl) c+=' sel';
+      const ds=`${cYear}-${String(cMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      h += ok ? `<div class="${c}" onclick="pickDate('${ds}')">${d}</div>` : `<div class="${c}">${d}</div>`;
+    }
+    document.getElementById('cal-days').innerHTML=h;
+    document.getElementById('cal-prev').disabled = (cMonth<=now.getMonth() && cYear<=now.getFullYear());
+  }
+
+  function navMonth(d){ cMonth+=d; if(cMonth>11){cMonth=0;cYear++;} if(cMonth<0){cMonth=11;cYear--;} renderCal(); }
+
+  function pickDate(ds){
+    const p=ds.split('-'); selDate=new Date(+p[0],+p[1]-1,+p[2]); selDate.setHours(0,0,0,0);
+    selTime=null; renderCal(); renderSlots(ds); setStep(2);
+    document.getElementById('ts-panel').classList.add('show');
+    document.getElementById('bf-panel').classList.remove('show');
+  }
+
+  function renderSlots(ds){
+    const g=getGone(ds), dt=new Date(ds);
+    document.getElementById('ts-sub').textContent=dt.toLocaleDateString('en-IN',{weekday:'long',month:'long',day:'numeric'})+' · IST';
+    let h=''; SLOTS.forEach((s,i)=>{
+      if(g.includes(i)) h+=`<div class="ts-slot gone">${s}</div>`;
+      else h+=`<div class="ts-slot" onclick="pickTime(this,'${s}')">${s}</div>`;
+    }); document.getElementById('ts-grid').innerHTML=h;
+  }
+
+  function pickTime(el,t){
+    if(el.classList.contains('gone')) return;
+    selTime=t;
+    document.querySelectorAll('.ts-slot').forEach(s=>s.classList.remove('sel'));
+    el.classList.add('sel'); setStep(3);
+    document.getElementById('bf-panel').classList.add('show');
+    const opt={weekday:'short',month:'short',day:'numeric'};
+    document.getElementById('bf-val').textContent=selDate.toLocaleDateString('en-IN',opt)+' · '+selTime+' IST';
+  }
+
+  function setStep(n){
+    for(let i=1;i<=3;i++){
+      const s=document.getElementById('bs-'+i);
+      s.classList.remove('active','done');
+      if(i<n) s.classList.add('done');
+      if(i===n) s.classList.add('active');
     }
   }
+
+  (function(){ const n=new Date(); cMonth=n.getMonth(); cYear=n.getFullYear(); renderCal(); })();
+
+  async function submitBooking(e){
+    e.preventDefault();
+    const btn=document.getElementById('bf-btn'), err=document.getElementById('bf-err');
+    err.classList.remove('show');
+    const n=document.getElementById('bn').value.trim(), p=document.getElementById('bp').value.trim(),
+          em=document.getElementById('be').value.trim(), st=document.getElementById('bs').value.trim();
+    if(!n||!p||!em||!st){ showErr('Please fill in all fields.'); return; }
+    if(!selDate||!selTime){ showErr('Please select a date and time.'); return; }
+    btn.disabled=true;
+    try {
+      const ds=`${selDate.getFullYear()}-${String(selDate.getMonth()+1).padStart(2,'0')}-${String(selDate.getDate()).padStart(2,'0')}`;
+      const data={name:n,email:em,phone:p,struggle:st,sessionDate:ds,sessionTime:selTime,amount:4999};
+      if(typeof api!=='undefined'&&api.payments) await api.payments.initiateCheckout(data);
+      else alert('Booking: '+ds+' at '+selTime+' IST\nPayment gateway will be connected to backend.');
+    } catch(er){ showErr(er.message||'Something went wrong.'); }
+    finally { btn.disabled=false; }
+  }
+
+  function showErr(m){ const e=document.getElementById('bf-err'); e.textContent=m; e.classList.add('show'); }
 </script>
 
 </body>

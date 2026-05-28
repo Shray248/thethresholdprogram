@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The 5 Invisible Limits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+      padding: 40px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    /* Force page breaks cleanly */
+    .page {
+      page-break-after: always;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px 0;
+    }
+    .page:last-child {
+      page-break-after: auto;
+    }
+    
+    .header {
+      text-align: center;
+    }
+    .header-logo svg {
+      width: 48px;
+      height: 58px;
+      margin-bottom: 24px;
+    }
+    .badge {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #000;
+      background: #fff;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .title {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      font-size: 42px;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+    .intro {
+      font-size: 16px;
+      color: #a1a1aa;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .intro strong { color: #fff; }
+    
+    .limit {
+      background: #0a0a0a;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 40px;
+      position: relative;
+    }
+    .l-num {
+      position: absolute;
+      top: -20px;
+      right: 40px;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      font-size: 80px;
+      color: rgba(255,255,255,0.03);
+      line-height: 1;
+      z-index: 0;
+    }
+    .l-name {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .l-desc {
+      font-size: 15px;
+      color: #d4d4d8;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .l-cost {
+      background: #000;
+      border-left: 3px solid #fff;
+      padding: 16px 20px;
+      font-size: 14px;
+      color: #a1a1aa;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .l-cost strong { color: #fff; }
+    
+    /* Interactive Workbook Elements */
+    .l-q {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+      background: rgba(255,255,255,0.03);
+      padding: 16px 20px;
+      border-radius: 8px 8px 0 0;
+      position: relative;
+      z-index: 1;
+      border: 1px solid rgba(255,255,255,0.05);
+      border-bottom: none;
+    }
+    .l-answer {
+      background: #000;
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 0 0 8px 8px;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .lines {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+      margin-bottom: 24px;
+    }
+    .lines:last-child { margin-bottom: 0; }
+    
+    .footer-cta {
+      text-align: center;
+      padding: 60px 40px;
+      background: #0a0a0a;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-top: 40px;
+    }
+    .footer-cta h2 {
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    .footer-cta p {
+      font-size: 16px;
+      color: #a1a1aa;
+      margin-bottom: 24px;
+    }
+    .cta-link {
+      display: inline-block;
+      background: #fff;
+      color: #000;
+      font-family: 'Archivo', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- PAGE 1: Cover -->
+    <div class="page">
+      <div class="header">
+        <div class="header-logo">
+          <svg viewBox="0 0 72 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M36 8 C34 28, 38 44, 36 80" stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+            <path d="M12 32 C20 28, 52 28, 60 32" stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+            <path d="M28 80 C32 78, 40 78, 44 80" stroke="#fff" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="badge">An Interactive Framework</div>
+        <h1 class="title">The 5 Invisible Limits Holding You Back</h1>
+        <p class="intro">You are reading this because you are capable of more, but something invisible is pulling the brakes. These are the 5 self-created limits that cap ambitious minds. <strong>Find yours. Write it down. Be brutally honest.</strong></p>
+      </div>
+    </div>
+
+    <!-- PAGE 2: Limits 1 & 2 -->
+    <div class="page">
+      <div class="limit" style="margin-bottom: 40px;">
+        <div class="l-num">01</div>
+        <h2 class="l-name">The Competence Trap</h2>
+        <p class="l-desc">You've gotten so good at surviving and managing your current level that growth feels unnecessary. Your competence has become the ceiling. You mistake being highly functional for being fulfilled.</p>
+        <div class="l-cost"><strong>The Hidden Cost:</strong> You spend your entire life operating at 40% capacity, receiving applause from people who don't know your true potential.</div>
+        <div class="l-q">Reflection: What would break if you actually gave 100% to what matters?</div>
+        <div class="l-answer">
+          <div class="lines"></div>
+          <div class="lines"></div>
+        </div>
+      </div>
+
+      <div class="limit">
+        <div class="l-num">02</div>
+        <h2 class="l-name">The Identity Ceiling</h2>
+        <p class="l-desc">You have a deeply ingrained story of "who you are" and "what you deserve." Whenever you exceed this invisible set point, you unconsciously sabotage yourself to return to the level you feel comfortable with.</p>
+        <div class="l-cost"><strong>The Hidden Cost:</strong> Every massive leap forward is immediately followed by a self-inflicted crisis.</div>
+        <div class="l-q">Reflection: Who would you disappoint if you actually succeeded without struggle?</div>
+        <div class="l-answer">
+          <div class="lines"></div>
+          <div class="lines"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 3: Limits 3 & 4 -->
+    <div class="page">
+      <div class="limit" style="margin-bottom: 40px;">
+        <div class="l-num">03</div>
+        <h2 class="l-name">The Comfort Disguise</h2>
+        <p class="l-desc">You've built a life that looks like progress but feels like a holding pattern. You mistake emotional safety for actual growth. Your comfort zone expanded just enough to be tolerable, but not enough to feel alive.</p>
+        <div class="l-cost"><strong>The Hidden Cost:</strong> Slowly fading into a life of profound mediocrity, masked by luxury or stability.</div>
+        <div class="l-q">Reflection: What hard truth are you using your current comfort to avoid?</div>
+        <div class="l-answer">
+          <div class="lines"></div>
+          <div class="lines"></div>
+        </div>
+      </div>
+
+      <div class="limit">
+        <div class="l-num">04</div>
+        <h2 class="l-name">The Knowledge Illusion</h2>
+        <p class="l-desc">You consume books, podcasts, and courses as a substitute for transformation. Learning has become your most sophisticated form of procrastination. You know exactly what to do—you just don't do it.</p>
+        <div class="l-cost"><strong>The Hidden Cost:</strong> You become the smartest person in the room who still hasn't moved the needle in three years.</div>
+        <div class="l-q">Reflection: What action are you hoping the next book will save you from taking?</div>
+        <div class="l-answer">
+          <div class="lines"></div>
+          <div class="lines"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 4: Limit 5 & Conclusion -->
+    <div class="page">
+      <div class="limit">
+        <div class="l-num">05</div>
+        <h2 class="l-name">The Invisible Agreement</h2>
+        <p class="l-desc">Somewhere along the way, you silently agreed to play small. To not outshine someone you love. To not make others uncomfortable with your ambition. The contract was never spoken, but you honor it daily.</p>
+        <div class="l-cost"><strong>The Hidden Cost:</strong> You dim your own light so others don't have to squint, losing yourself in the process.</div>
+        <div class="l-q">Reflection: Whose permission are you waiting for to outgrow them?</div>
+        <div class="l-answer">
+          <div class="lines"></div>
+          <div class="lines"></div>
+        </div>
+      </div>
+
+      <div class="footer-cta">
+        <h2>Awareness alone changes nothing.</h2>
+        <p>Knowing your limit is step one. Dismantling it requires an intervention.</p>
+        <a href="https://yourwebsite.com/#session" class="cta-link">Book Your Breakthrough Session</a>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

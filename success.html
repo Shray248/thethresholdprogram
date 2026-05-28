@@ -3,104 +3,265 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Payment Successful — The Threshold Program</title>
+  <title>Booking Confirmed — The Threshold Program</title>
+  <meta name="robots" content="noindex, nofollow" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { font-size: 16px; }
+
     body {
       background: #000000;
       color: #ffffff;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: 24px;
+      padding: 40px 24px;
     }
+
     .success-container {
       max-width: 520px;
+      width: 100%;
+      text-align: center;
       opacity: 0;
-      animation: fadeIn 0.8s ease-out 0.2s forwards;
+      animation: fadeIn 0.8s ease-out 0.1s forwards;
     }
-    .checkmark {
-      width: 80px;
-      height: 80px;
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      background: rgba(255,255,255,0.06);
       border-radius: 50%;
-      background: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 32px;
+      animation: scaleIn 0.5s ease-out 0.3s both;
     }
-    .checkmark svg {
-      width: 40px;
-      height: 40px;
+
+    @keyframes scaleIn {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
-    h1 {
+
+    .success-icon svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .success-title {
       font-family: 'Archivo', sans-serif;
       font-weight: 800;
-      font-size: clamp(28px, 6vw, 42px);
-      margin-bottom: 16px;
+      font-size: clamp(28px, 5vw, 40px);
+      color: #ffffff;
+      margin-bottom: 12px;
       letter-spacing: -0.02em;
+      line-height: 1.15;
     }
-    p {
+
+    .success-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
       color: #a1a1aa;
-      font-size: 15px;
+      margin-bottom: 40px;
       line-height: 1.7;
-      margin-bottom: 16px;
     }
-    .highlight {
-      color: #ffffff;
-      font-weight: 500;
+
+    .booking-details {
+      background: #0d0d0d;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      text-align: left;
     }
-    .back-link {
-      display: inline-flex;
+
+    .booking-details-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #71717a;
+      margin-bottom: 20px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 8px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .detail-row:last-child { border-bottom: none; }
+
+    .detail-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #71717a;
+    }
+
+    .detail-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
       color: #ffffff;
+    }
+
+    .preparation-card {
+      background: #0d0d0d;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .preparation-card h3 {
       font-family: 'Archivo', sans-serif;
       font-weight: 700;
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .prep-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .prep-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-family: 'Inter', sans-serif;
       font-size: 14px;
+      color: #a1a1aa;
+      line-height: 1.6;
+    }
+
+    .prep-list li svg {
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #71717a;
       text-decoration: none;
-      margin-top: 32px;
-      padding: 12px 28px;
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 10px;
-      transition: all 0.25s ease;
+      transition: color 0.2s ease;
     }
-    .back-link:hover {
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.3);
-    }
+
+    .home-link:hover { color: #a1a1aa; }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(16px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
   </style>
 </head>
+
 <body>
   <div class="success-container">
-    <div class="checkmark">
-      <svg viewBox="0 0 40 40" fill="none">
-        <path d="M10 20L17 27L30 13" stroke="#000" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
       </svg>
     </div>
-    <h1>Payment Successful</h1>
-    <p>
-      Thank you for purchasing <span class="highlight">The Threshold Program</span>.
-      Your 7-day journey begins now.
-    </p>
-    <p>
-      You will receive a confirmation email shortly with details about scheduling your
-      <span class="highlight">7 live one-on-one sessions</span>.
-    </p>
-    <p>
-      If you have any questions, reach out and we'll get back to you within 24 hours.
-    </p>
-    <a href="/" class="back-link">← Back to Home</a>
+
+    <h1 class="success-title">You're booked.</h1>
+    <p class="success-subtitle">Your Breakthrough Session is confirmed. The cage door is about to open.</p>
+
+    <div class="booking-details">
+      <p class="booking-details-title">Your Session Details</p>
+      <div class="detail-row">
+        <span class="detail-label">Session</span>
+        <span class="detail-value">The Breakthrough Session</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Date</span>
+        <span class="detail-value" id="confirm-date">—</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Time</span>
+        <span class="detail-value" id="confirm-time">—</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Duration</span>
+        <span class="detail-value">90 minutes</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Format</span>
+        <span class="detail-value">1-on-1 · Live</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Amount Paid</span>
+        <span class="detail-value">₹4,999</span>
+      </div>
+    </div>
+
+    <div class="preparation-card">
+      <h3>Before your session:</h3>
+      <ul class="prep-list">
+        <li>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#71717a" stroke-width="1.5"><polyline points="13 4 6 11 3 8"></polyline></svg>
+          <span>Find a quiet, private space where you won't be interrupted for 90 minutes.</span>
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#71717a" stroke-width="1.5"><polyline points="13 4 6 11 3 8"></polyline></svg>
+          <span>Come with one honest question: "What is the one thing I'm most afraid to look at in myself?"</span>
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#71717a" stroke-width="1.5"><polyline points="13 4 6 11 3 8"></polyline></svg>
+          <span>Have a notebook ready. What you discover will be worth writing down.</span>
+        </li>
+        <li>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#71717a" stroke-width="1.5"><polyline points="13 4 6 11 3 8"></polyline></svg>
+          <span>You'll receive a calendar invite and session link at your email shortly.</span>
+        </li>
+      </ul>
+    </div>
+
+    <a href="/" class="home-link">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Back to home
+    </a>
   </div>
+
+  <script>
+    // Populate booking details from URL params
+    const params = new URLSearchParams(window.location.search);
+    const dateStr = params.get('date');
+    const timeStr = params.get('time');
+
+    if (dateStr) {
+      const date = new Date(dateStr + 'T00:00:00');
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById('confirm-date').textContent = date.toLocaleDateString('en-IN', options);
+    }
+
+    if (timeStr) {
+      document.getElementById('confirm-time').textContent = timeStr + ' IST';
+    }
+  </script>
 </body>
 </html>
