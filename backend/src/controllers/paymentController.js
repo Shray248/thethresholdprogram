@@ -49,8 +49,8 @@ async function createOrder(req, res) {
       currency: 'INR',
       receipt: `ttp_${Date.now()}`,
       notes: {
-        product: 'threshold_7day_program',
-        description: '7-Day Threshold Program — 7 Live 1-on-1 Sessions',
+        product: 'breakthrough_session',
+        description: 'The Breakthrough Session — 90 Minute 1-on-1',
         buyer_name: name,
         buyer_email: email,
         buyer_phone: phone,
@@ -96,8 +96,7 @@ async function createOrder(req, res) {
     console.error('Razorpay order creation error:', error);
     return res.status(500).json({
       success: false,
-      error: 'Could not create payment order: ' + (error.message || String(error)),
-      details: error
+      error: 'Could not create payment order. Please try again.',
     });
   }
 }

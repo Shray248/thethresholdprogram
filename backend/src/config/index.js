@@ -44,9 +44,9 @@ const config = {
   },
 
   // ─── Program Pricing (in paise) ────────────────────────
-  // ₹4,000/session × 7 sessions = ₹28,000 = 2,800,000 paise
+  // 1 Breakthrough Session = ₹4,999 = 499,900 paise
   pricing: {
-    programPriceInr: parseInt(process.env.PROGRAM_PRICE_INR, 10) || 2450000,
+    programPriceInr: parseInt(process.env.PROGRAM_PRICE_INR, 10) || 499900,
   },
 };
 
