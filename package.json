@@ -2,6 +2,7 @@
   "name": "threshold-program",
   "version": "1.0.0",
   "scripts": {
+    "build": "exit 0",
     "dev": "npx serve . -p 3000"
   },
   "dependencies": {
