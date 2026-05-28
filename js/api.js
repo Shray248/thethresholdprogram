@@ -110,7 +110,8 @@ const api = {
         throw new Error(errorData.error || 'Could not create payment order.');
       }
 
-      const order = await res.json();
+      const response = await res.json();
+      const order = response.data;
 
       // Step 2: Open Razorpay checkout
       return new Promise((resolve, reject) => {
@@ -134,7 +135,7 @@ const api = {
  */
 function openRazorpay(order, data, resolve, reject) {
   const options = {
-    key: order.razorpayKeyId || order.key_id,
+    key: order.keyId || order.key_id,
     amount: order.amount,
     currency: order.currency || 'INR',
     name: 'The Threshold Program',
