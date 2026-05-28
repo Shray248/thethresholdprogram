@@ -96,7 +96,8 @@ async function createOrder(req, res) {
     console.error('Razorpay order creation error:', error);
     return res.status(500).json({
       success: false,
-      error: 'Could not create payment order. Please try again.',
+      error: 'Could not create payment order: ' + (error.message || String(error)),
+      details: error
     });
   }
 }
